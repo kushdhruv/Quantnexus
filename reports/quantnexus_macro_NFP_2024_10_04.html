@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QuantNexus-Macro | US Non-Farm Payrolls (Sep 2024) Dossier</title>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #d1d5db;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 24px;
+        }
+        .header {
+            background: linear-gradient(135deg, #131c2e, #1e293b);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+            color: #38bdf8;
+            letter-spacing: -0.5px;
+        }
+        .header .subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .kpi-card {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 14px;
+        }
+        .kpi-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+        .kpi-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .kpi-sub {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+        .section {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #38bdf8;
+            margin-top: 0;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        th {
+            background-color: #1e293b;
+            color: #94a3b8;
+            text-align: left;
+            padding: 10px 12px;
+            font-weight: 600;
+        }
+        td {
+            padding: 9px 12px;
+            border-bottom: 1px solid #1e293b;
+        }
+        tr:hover td {
+            background-color: #1a2438;
+        }
+        .badge-buy {
+            background-color: #064e3b;
+            color: #34d399;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        .badge-sell {
+            background-color: #4c0519;
+            color: #fb7185;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        .badge-neutral {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>QuantNexus-Macro Terminal | Event Transmission Dossier</h1>
+        <div class="subtitle">
+            <b>US Non-Farm Payrolls (Sep 2024)</b> | Released: 2024-10-04 12:30:00 UTC |
+            Actual: <b>254.0k</b> vs Consensus: <b>140.0k</b>
+            (Surprise: <b>+114.00k</b> | Z: <b>+1.52σ</b>)
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Detected Macro Regime</div>
+                <div class="kpi-value" style="color: #38bdf8;">HAWKISH_INFLATION</div>
+                <div class="kpi-sub">Confidence: 75%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Yield Curve Twist (2s10s)</div>
+                <div class="kpi-value" style="color: #34d399;">
+                    +7.0 bps
+                </div>
+                <div class="kpi-sub">BULL STEEPENER</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Market Efficiency Score</div>
+                <div class="kpi-value">85.6%</div>
+                <div class="kpi-sub">Mean Disloc: 0.41%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Highest Alpha Opportunity</div>
+                <div class="kpi-value" style="font-size: 14px; color: #f59e0b;">IEF</div>
+                <div class="kpi-sub">SELL CONVERGENCE</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Panel -->
+    <div class="section">
+        <div class="section-title">Institutional Interactive Visual Suite</div>
+        <div style="height:900px; width:100%;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-4.1.1.min.js" integrity="sha256-O24V1F27f8pb0glCkelh3cVHLNiHAJ5gCaVtq2aNch8=" crossorigin="anonymous"></script>                <div id="6bdd13e5-84d9-4789-952c-97022376b0ec" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("6bdd13e5-84d9-4789-952c-97022376b0ec")) {                    Plotly.newPlot(                        "6bdd13e5-84d9-4789-952c-97022376b0ec",                        [{"customdata":{"dtype":"f8","bdata":"ANInWF712z8AisHhzC3cPwBX0F10G9s\u002fAAQ6mN3A2D8AvvQ+mFzZPwC+gP3Had0\u002fAD18QHm71z8Afmg31rrUPwADI6b7O9c\u002fAFDoQutD2D8A3N3lgdbYPwCxQSIkstc\u002fAHDVveH11D8AzJdZ2UDWPwBH\u002fF6azNg\u002fADdSqvGt2D8AF+VYRj\u002fUPwCAq1YeBNQ\u002fAEMkcYj02D8Am7gpx7XbPwBFicmUlNk\u002fAD98ItAl2T8AefcJ4JrQPwAbYHrN09M\u002fADF9GDDS0T8AbmemoqjUPwDuG85I39I\u002fAG7B1ae70j8A0M9INqPMPwDg\u002fnXRFc8\u002fAAAAAAAAAAAAaN2yX0qivwCcFqw2fr6\u002fAFDTxuEvvL8AIhiH91vEvwCqv6qdecm\u002fAGWjR\u002fHd0b8Agg\u002fk94HFvwBCTPTpW8W\u002fAGDRa18Uu78AJB4Jcge8vwC4IXZUMLS\u002fAJAe\u002fuYRrb8AoG\u002fmkOmAPwAgzWyIiYq\u002fAKyTQNVMs78AchJi513AvwB2pxb7\u002f8G\u002fAIyK3hCqwr8A5PVv3z\u002fHvwAEatRMOsS\u002fADD9kQIZyL8AhNn0eWvIvwDkyOkSZ8m\u002fAOAkxoRj0r8AQUZMWIjSvwCoH7eZAdW\u002fAF2R6C\u002fr1r8AxjBMnmHSvwAOBc5aLNO\u002fAFCszuP5zr8AqyjrrOnRvwCkYYIlwdi\u002fAHAxbevF2b8A7LHECjvZvwA58iOnWdm\u002fAJXraydV1L8ArChjkNvSvwDSTxIue9q\u002fADDWo\u002fgA278AWEvs5TLdvwC\u002fVvzvAti\u002fANAmyE9v1r8AfeeWeZTYvwBQN2HPmNO\u002fABDOXhJk0b8AAMsIhmTQvwCi6MQw5tC\u002fAKLdtlJwzL8AiJL0wBXTvwDniZN5G9a\u002fAKuay6\u002ft2b8AwTyRW1XavwC21m\u002fqY9y\u002fgH\u002fXJLuc4L8ADcviyBrdvwDqMvCK+9m\u002fAFLt1uDh2r8AjPTQAxzXvwC85CqTfta\u002fALCx+gAe1r8Aju6lTGTQvwCJdOtyQtO\u002fABAF150U0L8ATqcrB6\u002fKvwA4bZ3lVMy\u002fAN86tCHm0L8AoAo2REjJvwBi5mSxB8a\u002fAGZRZrrpyb8AsNEVJCvJvwCuVTLQK8e\u002fAPKTmBdyw78AZBFzM7PJvwBsOZ6IidW\u002fAHgN3awZ0b8AYEy8Dr7NvwArxsQRRNK\u002fAEDHVYR6wr8Aet3T6wvIvwCQr3vSfsq\u002fABr4Ub\u002fcyb8AcOrb6NDEvwB4662Exr6\u002fAK7E\u002f8ocyr8AytmZqyTJvwDUDhO9Wca\u002fABDxHSaZw78AIAPQcc63vwCSI7WBgMC\u002fAFzUprbBwL8AQFXHG1ytvwBQvhoi\u002f5C\u002fAORUl3bKsD8AvJkjuJq6PwAWLkmSGMM\u002fAGB1+cR+wj8AAERUdSVpPwC4buQ6QKe\u002fALDdjRJgmr8AuPC+tWW7vwCG1sW6NsK\u002fABDvBbvowL8AeEUEBt+yvwDszURfhbu\u002fAKCM1KB7wr8AflPIFzjEvwDsXhxAfsK\u002fAO4lDrJwy78AyIz6R3a+vwDMedGYCbS\u002fAPzlcXnYur8A8J5hL7mYvwAg4FhTPKq\u002fADD0oWtlm78AuFOfos+pvwBYkIzESqQ\u002fAGDnW5T5jD8AgDArMrV7PwB4L8tlkqI\u002fANi8skyWoD8="},"hovertemplate":"\u003cb\u003eSPY\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#00E5FF","dash":"solid","width":2},"mode":"lines","name":"SPY (S&P 500 Index)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"0idYXvUbWUCKweHMLRxZQFfQXXQbG1lABDqY3cAYWUC+9D6YXBlZQL6A\u002fcdpHVlAPXxAebsXWUB+aDfWuhRZQAMjpvs7F1lAUOhC60MYWUDc3eWB1hhZQLFBIiSyF1lAcNW94fUUWUDMl1nZQBZZQEf8XprMGFlAN1Kq8a0YWUAX5VhGPxRZQICrVh4EFFlAQyRxiPQYWUCbuCnHtRtZQEWJyZSUGVlAP3wi0CUZWUB59wngmhBZQBtges3TE1lAMX0YMNIRWUBuZ6aiqBRZQO4bzkjfEllAbsHVp7sSWUDoZySbUQ5ZQHD\u002fuuiKD1lAAAAAAAAAWUBTpAm0tv1YQFn6VHJg+FhALEuOB\u002fT4WEDvczwE0vVYQCugKjFD81hAm1y4DiLuWEA\u002f+A0EP\u002fVYQN\u002fZBQtS9VhAqAsl6Dr5WEB3uH0j\u002fvhYQJJ34urz+lhALjwgw138WEB9M4dMhwBZQJeZvLMr\u002f1hAFduvyiz7WEDH9k4M0fdYQEWsdAIA91hAurqQ96r2WEAOBUgQYPRYQP7Kldni9VhAaAG3fvPzWEA+kwVDyvNYQI4bi3ZM81hAINs5e5ztWEC\u002fubOnd+1YQFjgSGb+6lhAo24X0BTpWEA6z7Nhnu1YQPL6MaXT7FhA2KkYDoPwWEBV1xRTFu5YQFyefdo+51hAkM6SFDrmWEAUTjv1xOZYQMcN3Fim5lhAaxSU2KrrWEBU15xvJO1YQC6w7dGE5VhA0ClcB\u002f\u002fkWECotBMazeJYQEGpAxD951hAMNk3sJDpWECDGGmGa+dYQLDInjBn7FhA8DGh7ZvuWEAANfd5m+9YQF4XO88Z71hAL5Gk1sfxWEB4bQs\u002f6uxYQBl2bIbk6VhAVWU0UBLmWEA\u002fw26kquVYQEopkBWc41hAAVG2icbeWEDzNB035eJYQBbND3UE5lhArhIpHx7lWEB0Cy\u002f84+hYQEQb1WyB6VhAUE4F\u002f+HpWEByEVqzm+9YQHeLFI297FhA8PooYuvvWEBZLGp8qPJYQGRJMY3V8VhAIcVL3hnvWECw+uTdW\u002fNYQM+MTSf89FhATdfMIgvzWEAoF\u002fVtavNYQCnV5hdq9FhAB7Yz9Eb2WEBOd0ZmJvNYQJTGYXd26lhAiPIiU+buWEDQ2aH4IPFYQNU5O+677VhAYBzVvcL2WEBDERYK+vNYQDgowpbA8lhA8wNXoBHzWEDICpKLl\u002fVYQCKF1F5O+FhAqR2AmvHyWEAbEzOqbfNYQJZ4diHT9FhAeAfxbDP2WEA4\u002f4tjDPpYQDduJb+\u002f91hA0pWsJJ\u002f3WEBYFYd8VPxYQBtU3g3w\u002flhAOdWlnTIEWUBv5giupgZZQAuXJEmMCVlAsLp8Yj8JWUCIqOpKMgBZQClyo\u002fgX\u002fVhAJSLX\u002fln+WEDSQ5CSJvlYQL0UnaLk9lhAeAh9oov3WECi7n4+SPtYQIXMLqge+VhAsLmVL8L2WEBB1hv04\u002fVYQIrQ8d\u002fA9lhACe34pkfyWEDOXAFuYvhYQI2hy5n9+lhAgYaj4Un5WEAR5gltdP5YQPzjlHW4\u002fFhAveBFqUn+WECJFawLxvxYQAuSkViJAllAO9+izOcAWUDCrMjUbgBZQO9luUxSAllAm1eWyRICWUA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"AA9qrGkj1D8A0HjrghHQPwCYvlDP9Ms\u002fAAa4ok0SwT8AdMB\u002fTre\u002fPwAo+07Aycw\u002fABRKmkgHzD8AwqtkIVXFPwDkQgzkwrs\u002fADAbZMsDuz8AXroDv8XHPwBUkitMT80\u002fAP4oClEU0j8AzNiLPu\u002fXPwBw5BF33dU\u002fAJSkbB7n0z8A+oMg2XzUPwB3W7AN\u002ftU\u002fAK2cnWEK3T8ARgSKvDbdPwBC08hrceM\u002fgCLOeFSZ4j+ALxBA3cTgPwAaDceQX+A\u002fgM7g+5324D+ASpWqWoPiPwAqAR6PteM\u002fgE4cBt274D8AueWrxbjbPwDUgHSe9t8\u002fAAAAAAAAAAAAhPWBkA\u002fEvwD8SjVGCc2\u002fADIhNiXO1L8AiCu2UFrDvwBQs\u002ftMZcq\u002fAH7JP0trzb8AzxBmp+zQvwBjjyAAO9W\u002fAGtGI7G01r8AysTCyY3PvwAnJ1hDINC\u002fABLFZf\u002fUxb8AlCLRv5bDvwCISjUas8y\u002fANg8Wd2fzr8AYkwv3N\u002fVvwBeh5IuftS\u002fAMb\u002f5AcQ278AkkZ2pPvPvwCbiVUaudC\u002fALiVf3kM1b8AYMd+UhjSvwAQF0Tuqs6\u002fANHWIxkx1L8ApqqDQsbSvwC6pQrETtS\u002fAHlFgBqp1L8A8DDw\u002fXfTvwBfhlNwdtu\u002fAOjlZq2D178AmHl7u43ZvwBio2vEgty\u002fAAbKgJ0w4L8AVgqHCB3hv4DqAE6nSOG\u002fAOlTUjmc4b8AczQJCxrgv4Cdb4fBlOK\u002fAORKoNYq5L+A04Ysvq7mv4ChzIYWH+q\u002fgOrxpicq6L+ANEIxQ4Tnv4CBHLKFl+W\u002fgODbt3KV47+AE04FrmnivwCqGIBHgdq\u002fAPWpYqzX2b8Ah9pywiTcvwATNEgrOeC\u002fAGEU5rJq4L8AIm4jYa7ivwAvwD2Ti+K\u002fAOpBqWpH5r8A8XdN9Yvkv4ARqBvdLeO\u002fAM727dsd4b8AKTR+7b\u002ffvwALqWrP6du\u002fAEla1QNg2L8ATQiVG2\u002favwBJ83dk89W\u002fAABbZNbH1r8AQEYEQizWvwDR1fEYXNa\u002fAJvjSk70078AWQhR0RjavwDOJOpc\u002fNa\u002fAFkbpGgT178ArtvmFdzVvwB0qZKABti\u002fAAL169WG0L8AdBVaOcPRvwBLOoPSadS\u002fAIp9splD2r8AgWX8CjHavwAISGfLpda\u002fAKyrqTd1078Amoge\u002fFDXvwD6WvPmTNi\u002fAH4JTuAI378AVS26fHvQvwDsF5\u002fMXNK\u002fAJwK6rhtxL8AjOtJ6O2zvwAAJ98KGmE\u002fAGyhWzAbtj8ARHxmkSa8PwB4gxv\u002f16I\u002fAFA1duH0rz8A+JVKs2msPwBwC9P20J+\u002fANwSeWGmub8A\u002fhkvd8jDvwCoFlYNdsy\u002fAARpv3s20r8AVKhM+PrQvwAIeXoxh7m\u002fAFB+piXmmb8AxIJVvzm3vwCEFvaj6MC\u002fAGC1VKMpxb8A6GZHoS24vwAA0eE304S\u002fAIiJiCUorb8AHK+6WtS9vwAo5ynI3rG\u002fAACQY9lzbr8AABJoI8RRPwAgLnjjg4A\u002fAIAhyE0\u002fcr8AgL0xH\u002fqYPwBg3pEGCrc\u002fAJAnBR7utD8A4Hjj6aynPwCQQvAgbps\u002fANDwr3ZUnz8AkGLBGyKhvwCAhfcfl7C\u002fAMzutAhrtb8="},"hovertemplate":"\u003cb\u003eQQQ\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#7C4DFF","dash":"solid","width":2},"mode":"lines","name":"QQQ (Nasdaq 100)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"D2qsaSMUWUDQeOuCERBZQExfqGf6DVlAA1zRJokIWUAd8J\u002fT7QdZQJR9J+BkDllACiVNpAMOWUDhVbKQqgpZQLkQA7nwBllAzAbZ8sAGWUAv3YHf4gtZQCrJFaanDllA\u002figKURQSWUDM2Is+7xdZQHDkEXfdFVlAlKRsHucTWUD6gyDZfBRZQHdbsA3+FVlArZydYQodWUBGBIq8Nh1ZQISmkdfiJllARZzxqDIlWUBfIIC6iSFZQDQajiG\u002fIFlAncH3O+0hWUCVKlW1BiVZQFQCPB5rJ1lAnTgMunchWUC55avFuBtZQNSAdJ72H1lAAAAAAAAAWUA+Bb83+PVYQIJa5Vx78VhAzt7J2jHrWEA86qTXUvZYQFgmglnN8lhAQRtgWkrxWEAx75lYE+9YQJ1w3\u002f\u002fE6lhAlbncTkvpWECbnR4bOfBYQNnYp7zf71hAdx1NgBX1WEC2bhegNPZYQLxa5XKm8VhAlGFTEbDwWECes9AjIOpYQKJ4bdGB61hAOgAb+O\u002fkWEC33MQtAvBYQGV2quVG71hASGqAhvPqWECgOIGt5+1YQHj03Yiq8FhALync5s7rWEBaVXy9Oe1YQEZa9Tux61hAh7p\u002f5VbrWEAQzw8CiOxYQKF5rI+J5FhAGBqZUnzoWEBohoREcuZYQJ5clDt941hA9Gv+xJ7fWEBU6\u002fHuxd1YQCv+Y7Fu3VhALlhbjcfcWEAal+3py99YQMUg8XzW2lhAOGq\u002fUqrXWEBZ8qaDotJYQL1m8tLBy1hAKxyysKvPWECXe51599BYQP3Gm\u002fTQ1FhAP0iQGtXYWEDZY\u002fWjLNtYQFbnf7h+5VhAC1adUyjmWEB5JY092+NYQNqXb6mN31hAPtczmirfWEC8I7k9o9pYQKJ\u002fhNno2lhALHytKnHTWEAeEGUV6NZYQN2vyEWk2VhAZBIkSMTdWEDXy4ESQOBYQPVWlTAW5FhAt6Uq\u002fJ\u002fnWECz92rkkOVYQLcMiJsM6lhAAKWbKTjpWEDAufu90+lYQC8qDuej6VhAZRy1sQvsWECn964u5+VYQDLbFaMD6VhAp+Rbl+zoWEBSJBnqI+pYQIxWbX\u002f551hA\u002fgoUKnnvWECM6qXGPO5YQLXFfC2W61hAdoJNZrzlWEB\u002fmgP1zuVYQPi3mDRa6VhAVFRWyIrsWEBmd+EDr+hYQAalDBmz51hAgvaxH\u002ffgWECr0kWDhO9YQBToYDOj7VhAsvqKI8n1WEAdhe2FBPtYQE6+FTQiAFlAW+gWzIYFWUARn1mkCQdZQG9w4\u002f9aAllAqsYunP4DWUC\u002fUmk2jQNZQEnPkvAC\u002flhASbuhZ5b5WEABc2jEG\u002fZYQKz0VPnE8VhA\u002fJZAhMntWECsV7MHBe9YQL5hoTOe+VhAG5ilnWH+WEBPnyqQMfpYQL70BK6L91hAUKVVLmv1WEBGJq6X9PlYQHjxQGZZ\u002f1hAz+5O+1r8WEA5VFHpivhYQDaG9U2I+1hA4DhNGMP\u002fWEASaCPEEQBZQHHBGx+EAFlAet\u002fIArf\u002fWEDYG\u002fOhjwFZQJh3pIHCBVlA5EmBhzsFWUAcbzyd9QJZQCkED+K2AVlADf9qR\u002fUBWUCu04e82\u002f1YQKAeAjja+1hATcTSPaX6WEA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"AG6OgrIKxj8AoqodOqvHPwCK4TBB4c8\u002fAA4VX2pTzT8AbgmaM3DFPwAAMgr+1sc\u002fAOiZ1ogXuj8AICw7QnKYvwAQSI5UKJ0\u002fACgyvCqMtz8AELZkF\u002f+kPwBE2BsNYMM\u002fAONTZIDp0T8Au\u002fQPaaLSPwCAYKSd39Y\u002fAIxUU3bK2j8AErEswvXXPwDW1MJUztY\u002fAOLJIl3z2T8AjbKSzEraPwB3gEVqMts\u002fAKI1HQN23j8Ag3GY3ADgPwBfAcw7wt0\u002fAKssbrzw2j8AXcV3ZazWPwAEFMcbuMk\u002fALBtk1D8zz8An+Hn3gHVPwAfGdaDJNM\u002fAAAAAAAAAAAAUMlG6ASnPwB43p\u002fEIq2\u002fAGA6SGg6hL8AQLEyEBugPwCouTWURay\u002fAITBseJOvL8AzBt5DDTBvwAsyEH0Db+\u002fAEAR95Iwn78AKJNF6QeqvwDqgojq1c6\u002fAFwi08tCwb8AQq3ia\u002fDHvwCP19Nzm9G\u002fANgiwi7V2L8AM4ukxY7QvwBzV3t1c9K\u002fABf3rW1M1b8AINUNm1zZvwCzqDKVYtm\u002fAMiK\u002ffWW1b8AK8zKHU3TvwCSZ+NqSNK\u002fAL4GJSwk1b8AdLUYgy7LvwAIWQ0eAsa\u002fAKh0HD0Wyb8AiIAsFJe5vwCwnLvnUaS\u002fAIDjMGiEeL8AICIxlKCEvwBQSSAVKZS\u002fAGS1CdnDsL8AUAVFFpKkvwC8\u002fhNVjLW\u002fAECJEm4Se78AHGa3Vdi\u002fPwDgL595cqI\u002fADyAwO7Qwj8ArA8FIZzJPwASQtu\u002fmMc\u002fAH15HrRy0T8A0SM66FHTPwAw7DZoMMc\u002fABbN2ZO9wz8AWnqk9\u002fzEPwB8gp6o1cU\u002fAGCBclWTxD8Avuy7467HPwC0XcSYudA\u002fAPKUGGNfxT8AAA5IMWZnPwD4xAG\u002fYL6\u002fADwbCPhPu78A8Mwizz2ZvwDkwibiLb6\u002fALRuyHtnwr8A+sKfDo7AvwDQDiIclsW\u002fAHjFlFamsr8A8LlT\u002f0aYvwAILDfaYLI\u002fAICJAzjndb8ATI8\u002fjGXAvwBgoX97BK6\u002fAHDPkbfpoL8AQAjVHdi\u002fvwBMRrE6gL6\u002fAP4wvcHgz78Aj2hzZTHSvwCdXwKNZ9S\u002fAPAk27IGub8AqD+Ir5zAvwBw6qC0ZMC\u002fAOqDmoBhyb8AcNw0evqZvwAAfbVDbFy\u002fAEAFCynagD8AgKRRKQiqvwBQGRuUK6m\u002fAMBZhBk+gj8AzLHgA0SyPwDMmIEqHLY\u002fALiajKZwsz8AfPG8rTfCPwDgBt1065Q\u002fAOwMrDWEvz8AuPChmgy5PwCApBMJl4W\u002fABSkYy7Txr8Aul+bTFfLvwAmlYK9sdK\u002fACmvO+IF0L8AkPMaV52jvwBQO6\u002fFzKO\u002fAGBp\u002f7yYm78A4JIHM66WvwD+2nCJ3cQ\u002fABLFB6ClwD8AiMtWZ9PBPwB4XKHBx8s\u002fACryN8K\u002fyj8A2HRBSgLJPwAy41myjMk\u002fAIqAe6dgxj8AzGrD6zvDPwDgWeHbZ4K\u002fANhGEglrxj8A1MiIL2DHPwCQghhmh8A\u002fAFD\u002fewYEpD8ALE85eja5PwC4aqOUZqw\u002fAPIlZAWFxD8A5GqbX+C7PwBobrnFUL8\u002fACSd7a98sj8AqHG5J7+2PwA4xtkgxbQ\u002fAMgEd6Wf0j8="},"hovertemplate":"\u003cb\u003eIWM\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#FF4081","dash":"solid","width":2},"mode":"lines","name":"IWM (Russell 2000)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"N0dBWQULWUBR1Q6d1QtZQMVwmKDwD1lAh4ovtakOWUC3BM0ZuApZQAAZBX\u002frC1lAeqY14oUGWUA+TdzbeP5YQIHkSIXSAVlAigyvCuMFWUDCluzinwJZQCLsjQawCVlA41NkgOkRWUC79A9pohJZQIBgpJ3fFllAjFRTdsoaWUASsSzC9RdZQNbUwlTOFllA4skiXfMZWUCNspLMShpZQHeARWoyG1lAojUdA3YeWUAG4zC5ASBZQF8BzDvCHVlAqyxuvPAaWUBdxXdlrBZZQAKK4w3cDFlA2LZJKP4PWUCf4efeARVZQB8Z1oMkE1lAAAAAAAAAWUAq2Qid4AJZQDEEbKdb\u002fFhALb69LF7\u002fWEAoVgZiAwJZQMtIeU13\u002fFhAn49TR+z4WEAacsP5ZfdYQPWN74I8+FhA7I7Q9gz+WECbTdcCv\u002fxYQIu+uwqV8FhA0m4Wml73WEBfqQ7KB\u002fRYQHEoLIxk7lhAKN090SrnWEDNdFs6ce9YQI2ohIqM7VhA6QhSkrPqWEDgKvJko+ZYQE1XzWqd5lhAOHUCCmnqWEDVMzXisuxYQG6YHJW37VhAQvna09vqWEBGpXO+aPJYQHxT+fD+9FhArMVx4XTzWEDe3\u002fQ6mvlYQGqMCMN1\u002fVhAcjxf7p3\u002fWEDvdl77Wv9YQGv7rW69\u002flhAp5K9Cc\u002f7WEBWXze9bf1YQFEAu+qc+lhA27VHtpP\u002fWECH2W0V9gdZQPzlM09OAllAHkBgd2gJWUDWh4IQzgxZQAmh7V\u002fMC1lAfXketHIRWUDRIzroURNZQBh2GzSYC1lAi+bsyd4JWUAtPdJ7fgpZQD5BT9TqCllAsEC5qkkKWUBf9t1x1wtZQLRdxJi5EFlAeUqMsa8KWUAckGLMLgBZQMKOP9Bn+FhAMfn9ASz5WEAx0w0jbP5YQEdPdod0+FhApsgbQsz2WECDHrD4uPdYQJj47vE09VhAos5aalb7WEBhxAqQe\u002f5YQALLjTaYBFlA2vEfY6j\u002fWEBaOOA5zfdYQNQLkHA\u002f\u002fFhAEsYNyeL9WEDwvYr4CfhYQG2uU\u002fFf+FhAgWchnw\u002fwWEBxl4yazu1YQGOg\u002fXKY61hAxDZJU775WEAs4DuosfdYQMiKr6XN91hAC76yP0\u002fzWEA5slxYYP5YQINKvJPj\u002f1hAKlhI0YYAWUBwy9X6vvxYQNacfI3a\u002fFhAziLM8JEAWUBzLPgAkQRZQDNmoAqHBVlAriajKdwEWUC+eN7WGwlZQG7QTbdOAVlAOwNrDeEHWUAufKgmQwZZQNxit0dT\u002f1hA9i3OaJb0WEAjULJZVPJYQNpqfUJO7VhA11DEHfrvWECOoRxVjP1YQJYYSmeG\u002fVhAagkwdEb+WEDShs8clf5YQH9tuMRuCllAieID0FIIWUDEZauz6QhZQDyu0ODjDVlAFfkb4V8NWUBsuiAlgQxZQJnxLFnGDFlARcC9UzALWUBmteH1nQlZQDH1IMFs\u002f1hAbCOJhDULWUBqZMQXsAtZQEhBDLNDCFlA6n\u002fPgIACWUDLU46eTQZZQFdtlNKMA1lA+RKygkIKWUC52uYX+AZZQJpbbjHUB1lASWf7K58EWUBqXO7JrwVZQI5xNkgxBVlAyAR3pZ8SWUA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"ABxMtuGLyz8ARMHIBCLLPwC6\u002fLqVacs\u002fAOj8ZxlEyj8A\u002fkZLThvKPwCOJyixOcs\u002fAEr0VY2PyT8AuBIavmPLPwDiQLn8fM8\u002fAFa27hkqzz8AjvYZMDvNPwDK\u002fM0kn8w\u002fAEq8C\u002f6fyz8AhmC3rZ\u002fNPwCEJnXbKMw\u002fACQnKJUfzT8Ahkfq22PQPwAw8gtZE88\u002fAACNLnamzz8A2pnZH0nOPwBOfodA1cs\u002fAPAE4X\u002fhyT8AhmSZtELIPwAW+hHsbco\u002fADRGpE6Tyj8Abs0MpWzKPwBmrIi9C8k\u002fAKiMXIL+xj8AHMjIsrbFPwBikO0eKcY\u002fAAAAAAAAAAAAWM7yvEehvwAIoPaNxqC\u002fAFC3wqNbq78AvGnFz5ywvwDgSotDTrC\u002fAIy+bPTws78AGAIduKi1vwCIlQf3fLe\u002fAIzPqP4+tr8A\u002fB3ulnO4vwB84qGIRLO\u002fAPSs2fC\u002fsL8AIEW1t1yyvwAkhXdTULC\u002fAFzm24\u002ftsr8AxAR\u002fRGS0vwAEOZm1JrO\u002fACRg+edEtb8AaJqqIj+yvwA4ikJFhrC\u002fANgJG6Risr8AHDAKA2uzvwAkQJFAhrW\u002fAIAX15wlt78AcLuIr6i7vwCIGuHPELy\u002fAHAPJZ4vt78AQMXMtyu4vwA0BMCPvbO\u002fALiUbwRFtL8A4LiNDBKtvwCovGcf9Ku\u002fAIAnoas\u002foL8A2Pc48Y+kvwDweYPb15S\u002fAMCTOCCOmL8AIK\u002fNzVGqvwAIWVTsbqu\u002fANAgGx\u002fhr78ASCsSQkqpvwB4jyG+Nq2\u002fACB1CrQYqb8AoLc10W+qvwDQmo1f9Je\u002fAMA89X2llb8AINaMkEmBvwBA4FTsYHc\u002fALBhNYolnj8AwCBxecWHPwAgUUfnpps\u002fAECue3WujD8AgOnPTGttvwBAzRCeSYO\u002fAMDKITqHhj8AkIVH4vaTPwCQkEpaBKI\u002fAACnzPtumD8AMJ8iuLSSPwBAENNt\u002fKI\u002fANCC80dypj8A4B0Rg0uyPwB49PoeMK0\u002fAGQGf+BXsj8AiOxNPtOrPwCIay9u5bA\u002fAGCcu0ExsT8AsED2So6uPwBczc9+wLA\u002fAOjVEZ3fsD8AkBzEknyxPwAgIld8hK0\u002fAAABDuGgqj8AwOKAOkuuPwBoLvF7OKc\u002fAPj0pxaqsT8ADLtiNeu3PwBgoqIjH7Q\u002fAOChfVzrtz8AIMAiM8e4PwBsQU7SebM\u002fAGiuhxDJrz8AuO8\u002fIlyrPwAoq3+Sjq8\u002fAJDUw3\u002f0sz8A7PfJMOewPwAAuJVR3LI\u002fAFAJgQBQvT8AxBc++la7PwC49LPji7k\u002fAESNFSrgtT8AnAJp2E+4PwBwJr4NF70\u002fAHz3F5J8uT8AkONSn0a9PwAca3jMYb0\u002fAEDuNUs4uj8AUM\u002fNMUW2PwAY8Y+JabA\u002fAFQ+yZ9tsT8AzEsu0vyzPwDssX7AB7U\u002fAEjKpjAouT8A0N5IAdu7PwDUKzg\u002fRbs\u002fAMilG6evtz8ABG6dVM+yPwAQDLXZKLQ\u002fACiUfxZMsz8AbOphvHO2PwBcyIZo4r0\u002fAPSgnQf7vj8AFGqiv1XCPwAowBfTm74\u002fAFivf5+TvT8Aquiq7v\u002fBPwCQK\u002fQPdsE\u002fAMSdkcV5xD8AvoHyKofEPwCiPW4vlMU\u002fADrtoRmlwz8="},"hovertemplate":"\u003cb\u003eSHY\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#448AFF","dash":"dash","width":2},"mode":"lines","name":"SHY (US Treasury 1-3Y)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"Dibb8MUNWUCiYGQCkQ1ZQF1+3cq0DVlAdP6zDCINWUB\u002foyWnDQ1ZQMcTlNicDVlAJfqqxscMWUBcCQ3fsQ1ZQHGgXH6+D1lAK1v3DJUPWUBH+wyYnQ5ZQGX+ZpJPDllAJd4F\u002f88NWUBDsNvWzw5ZQEKTum0UDllAkhOUyo8OWUCGR+rbYxBZQBj5hayJD1lAgEYXO9MPWUDtzOyPJA9ZQCe\u002fQ6DqDVlAeILwv\u002fAMWUBDskxaIQxZQAv9CPY2DVlAGiNSp0kNWUC3ZoZSNg1ZQDNWxN6FDFlAVEYuQX8LWUAOZGRZ2wpZQDHIdo8UC1lAAAAAAAAAWUA1pmEI1\u002f1YQP8rQS7n\u002fVhAFqmHi5T8WECRpQ7M2PtYQEgtHW\u002fs+1hAXdDkwgP7WEB6v\u002fjRlfpYQJ4aPsIg+lhAHcxVQHD6WECBeEQa4\u002flYQGGH190u+1hAw5TJA9D7WEC4rhLSaPtYQLceIuvr+1hAaQYJnET7WEDPPuDu5vpYQL+xmVI2+1hA96cBxq76WEBmWVU3cPtYQHJdr27e+1hAij35Vmf7WED5cz0\u002fJftYQPev22+e+lhAIDrKmDb6WEAk0R3UFflYQF65B8z7+FhAJLx2GDT6WECwzgwS9flYQPP+D5wQ+1hA0hrkvu76WEDkSG6+XfxYQGsIE3yB\u002fFhAENuLCvj9WEAF4dgBbv1YQGHIR4Ky\u002flhAxHb8HXf+WEAcSkbGtfxYQN90dSKS\u002fFhA5psc3AP8WECXur231vxYQBHOOyhZ\u002fFhAXLF+6dz8WEAMSdkFsvxYQFMmB7qA\u002flhANKwgqKX+WEBPmXuzdf9YQIFTsYNdAFlAG1ajWOIBWUAGicsrvgBZQBJ1dG66AVlAct2rc+UAWUAtYGYpxf9YQJZ5D7Nl\u002f1hAVg7RObQAWUBZeCRuPwFZQBJSSYtAAllAcMq874YBWUDzKYJLKwFZQAhiuo1fAllAWnD+SM4CWUB4R8TgkgRZQI9e3wOmA1lAmcEf+JUEWUCRvclnegNZQOLai1s5BFlAGOduUEwEWUAWyF7J0QNZQFfzsx8wBFlAenVE5zcEWUAkB7EkXwRZQETkio+wA1lAIMAhHFQDWUBYHFBnyQNZQM0lfg\u002fnAllAPv2phWoEWUDDrljN+gVZQJio6MgHBVlAeGgf1\u002foFWUAIsMjMMQZZQFuQk3TeBFlAzfUQIvkDWUD3\u002fUeEawNZQGX1T9LxA1lAJPXwH\u002f0EWUD7fTLMOQRZQABuZRS3BFlAVEIgAFQHWUDxhY++1QZZQC797PhiBllAUWOFCngFWUCnQBr2EwZZQJyJb8NFB1lA3\u002f2FJF8GWUDkuNSnUQdZQMcaHnNYB1lAkHvNEo4GWUDUc3NMkQVZQEb8Y2IaBFlAlU\u002fyZ1sEWUDzkos0\u002fwRZQHusH\u002fBBBVlAkrIpDEoGWUC0N1LA9gZZQPUKzk\u002fRBllAcunG6esFWUCBWyfVswRZQARDbTYKBVlACuWfBdMEWUCbehjvnAVZQBeyIZp4B1lAPWjnwb4HWUAKNdHfKglZQArwxfSmB1lA1uvf52QHWUBVdFX3\u002fwhZQMgV+ge7CFlA4s7I4jwKWUDfQHmVQwpZQNEetxfKCllAnfbQjNIJWUA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"AGX7F6Ll3j8AggfSiXrePwA3Lb3Fvd4\u002fAAw6og513j+A\u002fWBfl27gP4BTdcuPz+A\u002fgIREX8D74D8AQXfr0I\u002fgP4Dt4a98mOA\u002fgLBuvwHq4D8AzI8IqaLfPwAvsHYnG98\u002fAB1snSon3j8Agv+TGsLcPwAlvva6Lts\u002fAJY5hmCH2T8AAJrpacHYPwBbUBWcttg\u002fAB4HcUGL1T8AI4WuKgTYPwBz+g57Jtc\u002fALY+t4cn1T8AcgRtKaDTPwCnX0ulydI\u002fAC5YcriK0D8A1zatA3fTPwBXQnzxbtQ\u002fAPiGUECm0z8APmTH3N\u002fSPwDnqGMEEdQ\u002fAAAAAAAAAAAAYGdutOGYvwDAZC8ZJXC\u002fAMD2q6Owlr8AcB6blhyXvwC4Bncl06a\u002fAMTKvO8Yv78AAkRJFRrGvwBSQ+ZUksy\u002fALGWRMCh0L8ApavjYE3SvwDijEOBdtK\u002fAIWMvaCi0b8AUTjPhwHQvwChwP5ms9C\u002fAJyTG3mFyr8ABq7jezvKvwC6Xw+8k8i\u002fAAYweYnbyb8A6tF2V7LFvwCSlNstPsa\u002fAP5NNQpgxb8AiAoxRcfEvwAcovwzucG\u002fAAQcazp\u002fwL8AUq3944\u002fAvwBYUsx5TKy\u002fAKBTOc66k78AYKSP3P6DvwDwZOQ68p2\u002fAMgVhw9Vpb8AMAuiPOqSvwAYzB4xIaK\u002fADAx7xVvmr8AUP+W8aWQvwDAcO\u002fkfnK\u002fANDKYyPdlb8AANOAP+mYPwAA6B2tPkm\u002fAMC0879llz8AgFYrjj2fPwDwRtlkjaI\u002fAMDtKU3LrT8AeByum4mwPwCQyhmNmJw\u002fAMBYALchvD8AhLaPZMa\u002fPwDc2OCSEsA\u002fANTfF\u002fyHxD8ATCLAhKvKPwCi8GeqOM0\u002fAHLXrNOXyj8A2uGyEgXJPwDM6HDjwMs\u002fAPr1FdpQyz8ACnkqqMPNPwAopeeZJM0\u002fANbldzs\u002fzj8A3F1AI8HLPwAELNrrYsw\u002fAKBV+lKnyD8APqpOynDDPwCO17nmd8Y\u002fABzrTeUNwj8AiNmQQfC\u002fPwDKPZnvIsE\u002fAJgoOFw9wT8AYOMXMFO8PwDcoq8HSLs\u002fAKBkX0zxvj8AbEIJjWm\u002fPwCQdnaUC7w\u002fAEByFkVXwD8AvH1wjJW9PwB8iWxZ37w\u002fAIjLnUcWvD8AgOQ\u002fj9+0PwA0xAXaFr8\u002fAAbtiU8HwT8AeKDkitnAPwC826hq7Lg\u002fAPit1aE3uz8ArDSPrl24PwDk+z4d\u002fLs\u002fABgJZUYfuj8A7Jef5ei8PwC4zJ2BaME\u002fAMDHZh20vT8ATAQIH8G5PwBmvHKmlcA\u002fADRNlrJOwD8ApJ10YpG4PwB4uuMzq7Y\u002fAHhwOZ5rvT8AqFgTrF27PwDAmWfiFr4\u002fAFTQMBmqvD8AEJ2ZMT2zPwBIpjL7PKw\u002fAICvBG40iD8AvO\u002frjp2yPwDc6sXQA7E\u002fAKRP5FMxsD8AEOT9fXGyPwBo0Stfo60\u002fAOBrONJPmj8ACL\u002fdbWmiPwDQ41JBbJM\u002fALDk272hoT8ADPi8woqzPwCwcehzQ68\u002fANC51x8IqT8A4IaweL6TPwDgmFfRRZA\u002fAHAGlRDkkj8A4PVxKgemPwDYKYXISqI\u002fAGCCQ2ennD8AMAQVbT+iPwDgCcmqjYo\u002fAIA\u002f9lM\u002fa78="},"hovertemplate":"\u003cb\u003eIEI\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2979FF","dash":"dash","width":2},"mode":"lines","name":"IEI (US Treasury 3-7Y)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"ZfsXouUeWUCCB9KJeh5ZQDctvcW9HllADDqiDnUeWUD7wb4u3SBZQKfqlh+fIVlACYm+gPchWUCC7tahHyFZQNvDX\u002fkwIVlAYd1+A9QhWUDMjwipoh9ZQC+wdicbH1lAHWydKiceWUCC\u002f5MawhxZQCW+9rouG1lAljmGYIcZWUAAmulpwRhZQFtQFZy2GFlAHgdxQYsVWUAjha4qBBhZQHP6DnsmF1lAtj63hycVWUByBG0poBNZQKdfS6XJEllALlhyuIoQWUDXNq0DdxNZQFdCfPFuFFlA+IZQQKYTWUA+ZMfc3xJZQOeoYwQRFFlAAAAAAAAAWUCKGbnkcf5YQG1Cm2u\u002f\u002f1hAlEDF9ZT+WEAZTpY2jv5YQCkfUZsl\u002fVhAT80QxDn4WED\u002fXVv18vRYQFfejNW28VhAT2m7P17vWEBbVByfsu1YQB5zvH6J7VhAe3NCX13uWECvxzB4\u002fu9YQF8\u002fAZlM71hAMjZyQ73yWED9KA5C4vJYQCNQ+CG281hA\u002fWdDOxLzWEALl0TUJvVYQLc1Eung9FhAAVnl+k\u002f1WEC8emddnPVYQPKuAWYj91hA\u002fnHKYsD3WEBXKQEOuPdYQLV1xnB2\u002fFhAxmocU8T+WEDdghsJYP9YQLG5Udwg\u002flhARx0PXlX9WEBN3zVc0f5YQH0m3Nm7\u002fVhA7QyhDln+WEALkOag9f5YQD1CbAS2\u002f1hAU8PJLaL+WEAwDfiTjgFZQAxxqWDz\u002f1hATDv\u002fW3YBWUBoteLY8wFZQN4om6xRAllAuD2labkDWUAeh+tmIgRZQKmc0YjJAVlAMBbAbQgHWUCh7SOZ8QdZQG5scEkJCFlA6u8L\u002fkMKWUAmEWDCVQ1ZQFH4M1WcDllAuWvW6UsNWUDtcFmJggxZQGZ0uHHgDVlA\u002ffoKbagNWUCFPBXU4Q5ZQJTS80ySDllA6\u002fK7nR8PWUDuLqCR4A1ZQAIW7XUxDllA0Cp9qVMMWUAfVSdluAlZQMfrXPM7C1lAjvWm8gYJWUBiNmQQ\u002fAdZQOWezHeRCFlATBQcrp4IWUDY+AXMFAdZQLfo6wHSBllAKNkXU7wHWUCbUEJj2gdZQKSdHeUCB1lAIDmLoisIWUBvHxxjZQdZQF8iW9Y3B1lA4nLnkQUHWUAg+c\u002fjNwVZQA1xgbbFB1lAg\u002fbEp4MIWUA8UHLFbAhZQO82qho7BllAfmt16M0GWUArzaNrFwZZQPm+Twf\u002fBllARkKZ0YcGWUD75Wc5OgdZQFzmzkC0CFlA8LFZB20HWUATAcJHcAZZQDNeOdNKCFlAmiZLWScIWUBpJ51YJAZZQJ7u+MyqBVlAHlyO51oHWUAq1gRr1wZZQHDmmbiFB1lAFTRMhioHWUBEZ2ZMzwRZQMlUZp+HA1lAfCVwo8EAWUDv+7pjpwRZQLd6MfRABFlA6RP5VAwEWUAEeX9fnARZQC165Wu0A1lAvoYj\u002faQBWUDht7stTQJZQD0uFcQ2AVlAlny7NzQCWUADPq+w4gRZQDYOfW7oA1lAOvf6AyEDWUBuCIvnOwFZQI55FV0EAVlAZ1AJQS4BWUC8Pk7lwAJZQDulEFlJAllAJjh0dsoBWUCGoKLtRwJZQE9IVm3UAFlAgRNYgcn\u002fWEA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"AHpviRRTyz8ABu8dHgzMPwDEcE9qPss\u002fAGiJYpvSyT8Asti1Yn3KPwAQC9ljgMg\u002fADK29eRpyj8ANADchjPMPwD0Otv0Hsw\u002fAASmmC0X0D8A4IJDzH\u002fMPwDCc7\u002fR+M0\u002fAPoXQiYLzz8AuhaplrzMPwBIAA78Gsg\u002fAJyq0jfI0T8AUm9j7q7SPwCE47tf9M4\u002fAGw+x+Fn0D8AQW7bcGnQPwAdO475kNM\u002fAG11XlyJ1j8AFWbxCjrWPwA16KjAEtc\u002fANPbc+mZ2D8AsLuhBevVPwB+k6RWY9Q\u002fAKTYR8Sk0T8AM1TvNnLTPwBILjNJXNM\u002fAAAAAAAAAAAAYPuS2vWDPwCApap4sXi\u002fAABB9tEDo78AiLXW+ba+vwA0iWOAx8e\u002fAARqjcrwyL8AsuWd6b\u002fFvwCoiLu7oMm\u002fAP4Yeop7yr8A8Pvg2fjGvwBE23dgdMu\u002fALwbayIFy78ATu0PbXrGvwAEz\u002fKw4sS\u002fAATmh6Z9yL8A0vcl0QnLvwAI29jcfce\u002fABZBQ1Kwyb8AJLC\u002fbvvLvwAIEqmgJtC\u002fAND0gBDq0L8APzeKgwfQvwDss76r98y\u002fABKrCVPeyL8ANIk3q37LvwAoiPx5aMe\u002fAHDSHehxwb8A+M13ofG8vwBE6XVkLby\u002fAFIYUUhmxr8AjJ55NAbDvwBU+52hesK\u002fAOyad+6Dx78Adlvm3YLEvwCYebbUKsS\u002fAAaUQ7Dix78AFpi2r6\u002fFvwBu+P0hocK\u002fAFIDNi0kyr8AYJfUnr3PvwDw+bMdVNG\u002fALWX+0cT078ArWiXO1XWvwAq8epCn9W\u002fAE57V4\u002fc178AlIpth1zVvwDUQjQBFNS\u002fAClwyRPP078ACg1vBqrUvwAekWvvPtG\u002fAAuv+trN0r8AnxEUP9\u002fSvwCJkFHP6dS\u002fALmh4rK+1L8Arc+okKrWvwC85tIyctC\u002fAFYnUdQw0b8AxLT5drfOvwCeOBDfr8+\u002fAL48DH5UzL8Aqib\u002f9xTGvwD2i5b\u002fiMC\u002fACTyhSVKvr8Akrfeg7\u002fAvwAI+t1Tub6\u002fABDz9dg6pr8AIMBrXuWCvwDAtgwGSHK\u002fAKChT0bwpD8AAKjIBDcuvwA4sIoSq6q\u002fAKDvjX7bsb8AaHLMcRCrvwCgRJVZG5i\u002fAIBuESCNej8AAJg\u002f3iZDvwAA47l+k56\u002fAOBuX3Jyi78AsGyOZXGdPwDIgl+XqKY\u002fANjRbYA9oj8A8Pt5meemPwAst2MImrU\u002fAHikd8JUrT8A4N6YhB6qPwBwO2g85aE\u002fAPjmUYdToD8AUA4abjWiPwAQOxeO66Y\u002fAKCttzHYmz8AePcUKoW5PwBUOhNp07E\u002fAMi4mxiltz8A+O50upS0PwAwRuZFCaI\u002fAAAV2xsoej8AgDoiulpnvwDA4uWuO3G\u002fADAQtDQKkL8A4JxyImKfvwBQQMSUDpe\u002fAABbQCHSjL8AQJqx2mWlPwAYE5scKKw\u002fACg1FXF6tT8A6OovQC23PwCgEmZ9ALg\u002fAKynay0uuD8ACHmuWGi8PwA6RyzSfsE\u002fAEwRN2JOvD8AwJEyEku5PwCiugip9sI\u002fAAplFte5xD8AlIymm07FPwDM\u002ffD4I7w\u002fAOCQPC3\u002fsz8AwKwQ7mOqPwBI8mhjKqw\u002fAMwCv9TqtD8="},"hovertemplate":"\u003cb\u003eIEF\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2962FF","dash":"dash","width":2},"mode":"lines","name":"IEF (US Treasury 7-10Y)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"vbdEiqkNWUCD9w4PBg5ZQGK4JzWfDVlAtESxTekMWUBZ7FqxPg1ZQIiF7DFADFlAGdt68jQNWUAaAG7DGQ5ZQHqdbXoPDllABKaYLRcQWUBwwSHmPw5ZQOG532j8DllA\u002fQshk4UPWUBdi1RLXg5ZQCQAB34NDFlAnKrSN8gRWUBSb2PurhJZQMLx3S96D1lAbD7H4WcQWUBBbttwaRBZQB07jvmQE1lAbXVeXIkWWUAVZvEKOhZZQDXoqMASF1lA09tz6ZkYWUCwu6EF6xVZQH6TpFZjFFlApNhHxKQRWUAzVO82chNZQEguM0lcE1lAAAAAAAAAWUDbl9SunwBZQGpVHTqd\u002f1hA4DfBhZ\u002f9WECeUopBUvhYQGY7zj8c9FhA\u002fkq5mofzWEAnDTELIPVYQKw7IqIv81hAgfPCOsLyWEAIgg+Tg\u002fRYQF4SxM9F8lhAInLKbn3yWEBZCXjJwvRYQH6YhqeO9VhA\u002fgy8LMHzWEAXBG0Xe\u002fJYQHySkxFB9FhAdV\u002fe1ifzWEDuJ6BIAvJYQPjtVl\u002fZ71hAMAt\u002f7xXvWEDByHV8+O9YQAqmICqE8VhAdyp71pDzWEBmO2SqQPJYQOy7AcNL9FhAyBbxC0f3WECCDKKXw\u002fhYQK+F4qb0+FhA13PX28z0WEC6MMPlfPZYQFYCMa\u002fC9lhAijLECD70WEBF0gyRvvVYQDTDpJXq9VhA\u002fTXepw70WED1syQoKPVYQMkDAW+v9lhAV\u002f5k6e3yWEBQtJUwIfBYQBAGTOKr7lhAS2gEuOzsWEBTl2jEqulYQNYOFb1g6lhAsoSocCPoWEBsdZJ4o+pYQCy9y\u002f7r61hA14827DDsWED28pD5VetYQOJulBDB7lhA9VAFJTLtWEBh7uvAIO1YQHdvrjAW61hAR14dTUHrWEBTMFdvVelYQEQZLc2N71hAqtiuK8\u002fuWECeJYNEpPBYQLHjdxAo8FhAoeH5wNXxWECrbACE9fRYQAW6NIC791hAd4Oedm34WEA3pBA+oPdYQH6BCKtR+FhAnkHhpDj9WED\u002foQzVaP9YQCXN59+2\u002f1hANPTJCJ4CWUDrZh85\u002fP9YQPmprp2q\u002fFhAGIRcIIn7WECzccbxnfxYQLarZkp+\u002flhAukWANGoAWUA04JBs9v9YQNBhFMgW\u002flhAiQRtbCT\u002fWEDL5lgW1wFZQFnw6xLVAllAO7oNsEcCWUB+Py\u002fz3AJZQMvtGIJmBVlAj\u002fROmKoDWUDcG5PQQwNZQG4Hjac8AllA3zzqcAoCWUDKQcOtRgJZQGLnwnHdAllA2nobg70BWUDePYVKYQZZQJXORNp0BFlAMu4mRukFWUC+O50uJQVZQMbIvChBAllAVGxvoGgAWUCLu4tK0f9YQHVoRBG7\u002f1hA\u002fb60XP\u002f+WEAy1tjdCf5YQPu7sxaP\u002flhAKP31bhn\u002fWEBIM1a7rAJZQGNikwOFA1lASk1FnF4FWUC6+gtQywVZQKiEWR8ABllA6+laiwsGWUBCnisWGgdZQJ0jFmm\u002fCFlAU8SNmBMHWUBwpIzEUgZZQFFdhFR7CVlAhTKL61wKWUBKRtNNpwpZQHM\u002fPP4IB1lAOCRPy\u002f8EWUCYFcJ9TANZQEkebUyFA1lAs8AvtToFWUA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"AMMuvAx52j8AkIJ8KU\u002fcPwBXZtHn7d8\u002fADEyHcQ\u002f3z8ArFOQkrXcP4AxWAfywuA\u002fgIvG9M3O4T+AJU3LpDfjPwBxdsPPHuA\u002fAEWW5aCh4T+Ahb6ewdvhPwAlFFTZE+M\u002fgAEA5DeK5T+A\u002f9shnpfkP4B7pZfuGuc\u002fgAWszEYW5z8AE+GVySnmP4CAVXHfjeM\u002fAE831W354T8ARs5DoYriPwAtWUeAlOA\u002fgDzbKBsm4T+AzWW9X7\u002fgP4BB7KUbNOA\u002fgD+W+1hO4T+APILgPFniPwCjKm+OPuM\u002fgE\u002fUGREF5D+AY71H8EfkPwAnnuhYqOI\u002fAAAAAAAAAAAAnEZyePi2vwAWwnqtVcK\u002fAHEK2Xre0b8ARZfPBKPTvwDLYEGC29a\u002fALiWL4Os078A\u002fCggX0LZvwDqppXtBta\u002fAMBvtTS4178AZvTuk4XXvwDygxsbB9y\u002fAMK2akS63b8Az5+SOpLavwDPlS+rj9q\u002fAAO3puqQ178AIYADKSXevwBcAE7EfNu\u002fADpaB1+b3L8AdqwiTVbevwA62p1Abtu\u002fAL0NLG3y1r8Apil+B1LZvwCCM6ezeNe\u002fACkcffdU3r8Al9fntAzgvwCYnXZIDt+\u002fACLcXiZi3L8AVujjaRjhvwAuV2DAM9+\u002fAF1ZuTWA3r8AZ6+oMtDgv4DeMbHA1OW\u002fgAKh6BFg5r+AmDp21B3ov4DzphJWcuu\u002fgLjGVJR3678AnYgB1Rrnv4DIP0lrSua\u002fgOGEuwQO578ABVEuf8bnv4C6cA0soOi\u002fAGrT01aF6r8AvkkwCsTsv4A+uFpuI\u002fC\u002fgGIEvEhh778AmkwhLsnuvwC65hVndu6\u002fgGg54zfa67+A3m4NDQzrvwBCJ0qyLeu\u002fAIawdxT06r+Ax6L\u002f1anrv4AFC7HQe+y\u002fANs25cAa7L+AOyzO\u002fYPrvwAg9HAJ7+y\u002fgKB9HSHH778AF5nM65DuvwAo2\u002fMZ3vC\u002fwJqA6qd98b\u002fAVAmkj9Txv0BpRnEHQfK\u002fQP5uV94F87+A6Q7lc3Tzv4CsVJrEt\u002fK\u002fABUKDwr28b8AlHok7aLxv0AJGxQIufC\u002fgHdG3I6r7L8A8U+WTG7sv4Ao\u002fP7Wouq\u002fAJ39tE837L+AuoEWbqPrv4A0IBxz7Ou\u002fANGhW0jZ678AePJUFn\u002frv4DAnJFOReu\u002fAFKnVRL967+A8SalDt\u002fsvwCPX4l0peq\u002fgKIvCgpO6L+A8iEfMRvmvwBwpqny0ue\u002fgNAGlwgE5r8AEEm4E4Ppv4AALft0jei\u002fAGsc1OQx57+Ax8ctqE7ov4DsKV0O6em\u002fgNXceW5m578AN4XMO43ovwAyffYix+i\u002fAE4COvun6b8Aq5WhdlXpvwBfj2CAzem\u002fAL2wUbvL6r+AJ52Ulhbqv4ARbfkxeem\u002fgEkkbHmE6r8A9hVmu8zovwCdlLZkSOq\u002fAFZcdRG06b+ANQybtlrov4B9boWmOue\u002fgFAs25LW5L8AGfSa3hLmv4ARIlPrzuW\u002fAC7464\u002fj5r8AuQ+7mWPmv4A78kxML+W\u002fgPmH3zpy4r+ATfm2KJzgv4Bu4IYhleC\u002fgOR+OHy64b+A9tcj1wjjv4Dq\u002fwzkCuK\u002fgFhLadpX5L8AKbb3Ep\u002fhvwD+m53fSt6\u002fAHF8dgDc4L8="},"hovertemplate":"\u003cb\u003eTLT\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#304FFE","dash":"dash","width":2},"mode":"lines","name":"TLT (US Treasury 20Y+)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"wy68DHkaWUCQgnwpTxxZQFdm0eftH1lAMTIdxD8fWUCsU5CStRxZQGOwDuSFIVlAF43pm50jWUBLmpZJbyZZQOLshp89IFlAiizLQUMjWUALfT2DtyNZQEooqLInJllAAwDIbxQrWUD\u002ft0M8LylZQPdKL901LllAC1iZjSwuWUAmwiuTUyxZQAGr4r4bJ1lAnm6q2\u002fIjWUCMnIdCFSVZQFqyjgApIVlAebZRNkwiWUCby3q\u002ffiFZQIPYSzdoIFlAfyz3sZwiWUB5BMF5siRZQEZV3hx9JllAn6gzIgooWUDHeo\u002fgjyhZQE480bFQJVlAAAAAAAAAWUBZbuPhQfpYQPWeQinV9lhAj\u002fUmhSHuWEC7aDD7XOxYQDWfvn0k6VhASGnQfFPsWEAE19+gveZYQBZZahL56VhAQJBKy0foWECaCxFseuhYQA585OT441hAPkmVu0XiWEAxYG3FbeVYQDFq0FRw5VhA\u002fUhZFW\u002foWEDff\u002fzW2uFYQKT\u002fsTuD5FhAxqX4oGTjWECKU92yqeFYQMYlYr+R5FhAQ\u002fLTkg3pWEBa1oH4reZYQH7MWEyH6FhA1+OCCKvhWEDSUDCW5t9YQGhiibfx4FhA3iOh2Z3jWEBULzgsz91YQNKonz\u002fM4FhAo6ZGyn\u002fhWEAyoa6aX95YQEOcnX5W1FhA+70u3D\u002fTWEDPihNXxM9YQBmy2lMbyVhAj3JW1xDJWEDG7vxVytFYQG+AbSlr01hAPfaI9uPRWED2XaMBc9BYQIse5ae\u002fzlhALFlYUvXKWECEbJ\u002frd8ZYQAYflUZyv1hAO\u002feHbj3BWEDMZr2jbcJYQIwy1DETw1hAL405kEvIWEBDIuXl58lYQHyxa5ukyVhA9J4Q1xfKWEBxugBUrMhYQPXpnV4Ix1hASpI1fsrHWECJp2ME+MhYQMAXHu0hxlhAvwTFvXHAWEDSzWYo3sJYQGCTMJiHvFhAlf1VYAm6WECt2m\u002fBrbhYQFvmOuL7tlhAB0SihuizWEBaxGswLrJYQE6tlu0gtVhArNfD1ye4WECwFW5LdLlYQNuTr98bvVhAEXNH4qjGWEAeYNNmI8dYQK8HAlK6ylhAxgSWYJHHWECL\u002fNIjuchYQJe\u002fxxknyFhAXrxIb03IWEAQG1bTAclYQH\u002fG3GJ1yVhAXLFU2wXIWEAdsrXiQcZYQOJA7Ra1ylhAu6Dr62PPWEAbvMGdydNYQCCzrBpa0FhAX\u002fLR7vfTWEDgbY\u002fY+cxYQP+lCRblzlhAKsdXNpzRWEBxcKSvYs9YQCesReMtzFhAVUYMIzPRWECS9WaI5c5YQJwFE7pxzlhAZPuLCbDMWECq1LwSVc1YQELhPv9kzFhAhp5ciWjKWECxxdbS0stYQN0lDZwNzVhAbbcnDffKWEAU1DOJZs5YQMbWkjZvy1hAVEcV3ZfMWECV58mSSs9YQAUj9bKK0VhAX6dJ2lLWWEDOF8pC2tNYQN27WSli1FhApA8o4DjSWECO4InMONNYQIkbZmeh1VhADfBAihvbWEBlDZKux95YQCM\u002f8rzV3lhANwKPB4vcWEATULhR7tlYQCsA5jfq21hAT2ktS1DXWECukxDawdxYQAJkYiC14VhAHgcT\u002f0feWEA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"AIIhsC9U078Ah32xJ0\u002fUvwBhxeS\u002f\u002fdK\u002fAC7tovSh0r8AmC2B5X7NvwBOhZk8j86\u002fAC6URvylzr8ATgTKc7zIvwAKLuZ67sa\u002fACDt4Qjhyb8Amm12gOPLvwBkYvpWws2\u002fAOA3cSMcy78A4hvlpAnLvwAm9oXW6cu\u002fAGjdeShyzL8AvuEb6lDLvwAiEF\u002fRFc6\u002fAHDzhl0Wy78AvAtEKlnNvwAUO\u002fL9Oc+\u002fAPCu2iL8xb8APiREoUjKvwDoyhwQR8a\u002fAADiXL3Qxb8ATC21Y4vJvwBs31UaRs2\u002fAEAxzvJszb8A6CP7wR\u002fMvwBa7gPT+82\u002fAAAAAAAAAAAAiITjmQG3PwCE8\u002fOX2Lw\u002fAJQhiyO4uz8AQEhfHeDAPwBml+fjGcA\u002fABBtRmU1vj8AsIE7gDC7PwC4+f7om7k\u002fACg\u002fxwmEtD8AOIWY\u002fey1PwAQwagKL7E\u002fAOC8An8Grj8ABNHl3JOwPwBUfBy24LI\u002fABheDeDDtz8AKP6Pr7WpPwBsRinF9rE\u002fACQSlqhGsT8AwOgD\u002fV+9PwAc3CJDhL0\u002fAJbhUToBwD8AqMpnadS3PwDgvNdXTr4\u002fAMjB3e\u002feuz8AtPctl+y1PwA8OWW6Mbo\u002fAFQBw8cdwD8ATH6zOvjBPwCYyXq0OsI\u002fADTWVnhyuD8AbBZbVYO3PwBUiHkTOrw\u002fAFho8xtevT8AUDe798zAPwCi8EwBCsQ\u002fAG7UHHrHyj8AAmqtc2jJPwB0TmRL68s\u002fAHCxI+INzD8AIjlMDtvIPwCwg3kwJ8g\u002fAGz7tuMHwj8AanucWeTDPwD6UEOZbcE\u002fAIAy57yTvT8AdKut6yG2PwAsozRTlbc\u002fAOShbodpsj8AqLT\u002ff7auPwAYMN29F6c\u002fAPAOXMvgpz8AYAMVYKKNvwAwD\u002f\u002fHPZc\u002fAAA7qodMcT8AwBqZ4W2CPwDodEvBzKk\u002fAEwqMwe3sT8A3AjDhDa2PwDUH7ubp7k\u002fAGi8t2OIuz8ASKroGwa4PwAUSYRBvbI\u002fALgcMdSGsT8AcOsNr7G6PwBIqgsR7r4\u002fAB7eeam3wT8A3pAQDVPAPwCgd\u002fvStMA\u002fADJMJ01+wj8ALBZHnErGPwC2FvBnpsY\u002fAPrS0k\u002fCyj8A3IASKlDGPwB6QJAKlMU\u002fACryf+zUwz8AAmtrGjPFPwB+eZFt7MY\u002fAChpmYZ7wT8APJJLxqu+PwB8g6OBSMg\u002fAGYcDsmvxj8AUGG\u002fl5DDPwBsLW97FMQ\u002fAHRtZHObxz8AJlrRaxfRPwBBumwvntM\u002fAE0Xoedj0z8AUmnzeTXSPwBvCI7+QNM\u002fALiw5p\u002fF0z8ATn2kzMnUPwBGwSDFqdM\u002fAKDrcbTl0j8AfEbVuPjRPwAQdZm1eNM\u002fAIqlO8Mo1T8AQUXh8tnTPwAuZvwcN9Q\u002fACtAA17b1D8AeJjeaLfTPwCQQp57LtI\u002fAKwq6ZZe1D8AXW3OW8LVPwAoQmEp19U\u002fAI8QMdtt1T8A3ZxoK8fVPwAKqooKj9Q\u002fAG4\u002f50Vx1T8AzrfE5vPXPwBVp2\u002fCrtQ\u002fAKw7htS11D8AD4iAygPWPwAoywe5rtU\u002fAJ1XDI1J1D8ASD0jotjSPwAm8szUT9Q\u002fANsx1kSk1D8AA4SgtGnSPwABkI4skdA\u002fACgUt04azj8="},"hovertemplate":"\u003cb\u003eUUP\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#00E676","dash":"dot","width":2},"mode":"lines","name":"UUP (US Dollar Index)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"ft5P0KvsWEB5gk7YsOtYQJ86G0AC7VhA0hJdC17tWEA0aT+NQPFYQFk9s2G48FhA6bXcAa3wWEDZ\u002fRrGofNYQPvojMKI9FhAcAmPew\u002fzWEAzycQ\u002fDvJYQM7OgtQe8VhAEGRH7nHyWEAPco0te\u002fJYQO0EvRQL8lhATBHD68bxWEAhD\u002fKKV\u002fJYQO93UBf18FhASIY80XTyWEAi+t1qU\u002fFYQHbiBgFj8FhAiKiS7gH1WEDh7V2v2\u002fJYQIya8Xfc9FhAAI9RoRf1WEBaaSVOOvNYQEoQ1fJc8VhAYOeYhknxWEAMbgIf8PFYQNMIfhYC8VhAAAAAAAAAWUAi4XhmwAVZQOH8\u002fCU2B1lAZcjiCO4GWUAgpK8OcAhZQLPL8\u002fEMCFlARJtRWY0HWUBs4A4gzAZZQG6+P\u002fpmBllAys9xAiEFWUBOIWY\u002fewVZQEQwqsJLBFlAnFfgz8ADWUBBdDn3JARZQBUfhy24BFlAhlcD+PAFWUDF\u002f\u002fG1NgNZQJtRSrF9BFlAiYQlqlEEWUAw+kD\u002fVwdZQAe3yBBhB1lAy\u002fAonQAIWUCq8lka9QVZQDjv9ZWTB1lAcnD3u\u002fcGWUDtfcslewVZQE9OmW6MBllAqoDh4w4IWUAmv1kd\u002fAhZQMxkPVodCVlAjbUVnhwGWUCbxVbV4AVZQBVi3oQOB1lAFtr8hlcHWUCom917ZghZQFF4pgAFCllAN2oOvWMNWUABtdY5tAxZQDonsqX1DVlAuNgR8QYOWUCRHCaHbQxZQNjBPJgTDFlAtn3b8QMJWUC1Pc4s8glZQH2oocy2CFlAoMw572QHWUDdaut6iAVZQMsozVTlBVlAeajbYZoEWUCV9v\u002fP1gNZQAOmu\u002ffiAllA3oFrGfwCWUDlV\u002f\u002fsEv9YQPPwf9xzAVlA7KgeMkUAWUDWyAxvkwBZQJ1uKZg5A1lAk8rMwW0EWUA3wjChjQVZQPXH7uZpBllAGu\u002ftGOIGWUCSKvqGAQZZQEUSYVCvBFlALkcMtWEEWUDcesNrrAZZQJLqQoS7B1lAD++81NsIWUBvSIiGKQhZQNC7fWlaCFlAGaaTJj8JWUAWiyNOJQtZQFsL+DNTC1lAfWnpJ2ENWUBuQAkVKAtZQD0gSAXKCllAFfk\u002fduoJWUCBtTWNmQpZQL+8yDZ2C1lAlLRMw70IWUCP5JLxqgdZQL7B0UAkDFlAMw6H5FcLWUCosN9LyAlZQLaWtz0KCllAujayuc0LWUAmWtFrFxFZQEG6bC+eE1lATReh52MTWUBSafN5NRJZQG8Ijv5AE1lAuLDmn8UTWUBOfaTMyRRZQEbBIMWpE1lAoOtxtOUSWUB8RtW4+BFZQBB1mbV4E1lAiqU7wygVWUBBReHy2RNZQC5m\u002fBw3FFlAK0ADXtsUWUB4mN5otxNZQJBCnnsuEllArCrpll4UWUBdbc5bwhVZQChCYSnXFVlAjxAx220VWUDdnGgrxxVZQAqqigqPFFlAbj\u002fnRXEVWUDOt8Tm8xdZQFWnb8KuFFlArDuG1LUUWUAPiIDKAxZZQCjLB7muFVlAnVcMjUkUWUBIPSOi2BJZQCbyzNRPFFlA2zHWRKQUWUADhKC0aRJZQAGQjiyREFlAFIpbJw0PWUA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"ALTHLKdavb8Afpn9jaXEvwDg6YhdqsC\u002fANSMGru1u78AxI92rDe7vwDQhetOKrq\u002fAFAJnKgfpL8AkA7LXCqUvwDAjos3g3U\u002fAJB3nBmYkL8AQKbUwpKMvwBA08ei2o+\u002fACDxWXm9jD8AAGlFbC6UPwAQVCn4paU\u002fADSdX0LStD8AuM+O2nq9PwBQU4cW0Lg\u002fABAk7rEWwj8A2CPLOFnGPwAikxaRTco\u002fAIKg02p9yz8AqIqrkX\u002fNPwC0zfAeY8w\u002fAFLkPGbbyD8A0lkuoeLIPwBu3uUWHsc\u002fANIvDDNxyT8ARnUUIznGPwBIBVd\u002f28k\u002fAAAAAAAAAAAAQKgZvQB9PwCQ10JvB5E\u002fAGDU4X0opD8AwIatzcWJvwBg0yGz3JK\u002fAMBWoDPijz8AsJ0D58mnPwCcSUNeAbI\u002fAKBwQQhztT8AQFUN1YWyPwDoMm7yALM\u002fACDvd6WUgb8AeDVNbimgvwBAwpsxw6G\u002fAKC70n\u002fWrb8A6JE\u002fVx6yvwDII59i7rO\u002fAFw60Nx2tL8A8Mk7j3eqvwAgnc9bNYa\u002fAEASqpjMjj8AsOy1Hd+aPwCYf9rlzaQ\u002fAAAlQGcgZL8A4M8TcZumvwDw5zMaPq2\u002fADzsgnCEsr8AqBTpRQ2uvwAYhrVmNau\u002fAJycyiwFtb8AcClUp\u002fOzvwC4WLCUV6u\u002fAJSP+iRTub8AfIjhHXW9vwBsVvqlCby\u002fAB69ykQFwr8AIi3GXfXJvwBMOYCqlMy\u002fAPiPz6jdxr8A9kpHG8\u002fIvwDMjxUWDce\u002fAIKEngLjy78AVGmEkdPKvwDqtADtJ86\u002fACzx7Te50r8A87PNpWjTvwBODSLbONW\u002fAPveYQV31L8AucVfpwrUvwAzfoVdo9G\u002fAJ5sI2rezb8A6I53vsXLvwCWvPWUr86\u002fALrtHX4E0b8ASF3wYT3RvwD+wHOMetK\u002fAFQ4ro8C1L8AnTa8R8\u002fVvwBfP8FeY9W\u002fAAIU7+ir178AN+pYmvbXvwDEXFO\u002fe9e\u002fAN08nm2P2L8AoejKSyzZvwB2T3mXONq\u002fAPuApQR12b8Ac7t8V6bavwCA4SV65ty\u002fADp1nWlS3b8ASl6TMErcvwC2Gb\u002fKJNq\u002fABTiQ4\u002fR3L8AFNQQjnnbvwDZ0ebsQtm\u002fAJxfJDPt1r8A5S+WXNTZvwDILYh0w9u\u002fAMaN\u002fDg53b8ARL2dLzzevwAepVOX1d6\u002fAHbwIjI\u002f4L8ACQVdGMngvwA5iED8FeG\u002fAConwPZw3r8AaJpo9VfevwCQy4P75t2\u002fADdjKrcZ3b8AmfvmDvrcvwDlNyky+Ny\u002fAB\u002fcj7gB3L8A2tg7TAfdvwDI6GMfq96\u002fAG8PJNtv3b8AuwPRQO3cvwCXiplgVN6\u002fgGrNvg184L8AUwyiywPfv4BwnoGzNeC\u002fAAcqcfie3b8Ay8UFNA3gv4Bl4na8feC\u002fgHdsTRqD4L8Aw8frNcrfvwDSjVXDwd6\u002fAA8jfLVV378AVXEt8SDcvwBZ4Bhwn92\u002fAJxCbU5S378ADI6hXZXfvwC9IZ7Jo96\u002fAPajWVLB3b8A2w1tgpLdvwB7MMiRxN6\u002fAH8V2H3z3L8A1MOZ0yPcvwDdz91fKdu\u002fAAmY+Rq62r8A6CT+YP3avwDCMGTF79y\u002fABbA6Acy3L8="},"hovertemplate":"\u003cb\u003eFXE\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#1DE9B6","dash":"dot","width":2},"mode":"lines","name":"FXE (Euro FX)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"E840Vqn4WEBBMwE5rfVYQBCLO9Gq91hAy1w5kRL5WEAPXOIUMvlYQIweRWx1+VhA1n7sCnz9WEAXTzNavf5YQDsu3gxWAFlAhzhmfvb+WEDOWulpG\u002f9YQGbB6SoB\u002f1hAic\u002fK6+UAWUCQVsTmQgFZQIIqBb+0AllATeeXkDQFWUDus6O2XgdZQNTUoQU0BllACBL3WAsJWUDskWWcLAtZQJFJi8gmDVlAQdBptb4NWUBUxdXIvw5ZQNpmeI8xDllAKXIes20MWUDpLJdQcQxZQDfvcguPC1lA6ReGmbgMWUCjOoqRHAtZQKSCq7\u002ftDFlAAAAAAAAAWUChZvQCdABZQHkt9HYQAVlAjDq8D4UCWUDKk5LRMf9YQMrizTTS\u002flhAtgKdEf8AWUC2c+A8+QJZQGfSkFeABFlAKFwQwlwFWUBQVUN1oQRZQLqMmzzABFlAh0DUWnP\u002fWEBRWTbS+v1YQLiHzJnH\u002fVhAjKgFMEX8WECGGzBqePtYQA43WGcE+1hAafHLSOL6WEDChhgOsfxYQBeDIVVO\u002f1hAklDFZPYAWUDLXtvxrQFZQPNPu7yZAllAtn8xv9f\u002fWEAEht2RLP1YQAKDuTxY\u002fFhA8UTf4177WEBr3UJXPvxYQD1PKVOZ\u002fFhA2VjNtL76WECk9SoWA\u002ftYQOn0aQ2V\u002fFhAG1zBNqv5WEDhnYe4ovhYQGVqgZb9+FhAcaGaXf32WEBv6RxRBfNYQFrjv6q18VhABDiYK5H0WECFWlxymPNYQBo49XR59FhAv72wfg7yWEBWyz03lvJYQIulfwns8FhA1A4SyEbtWEANTDJal+xYQLLy3STH6lhABSGe+ojrWEBHOqBY9etYQM2BeqJc7lhAsUnuyhDxWECMOMQgHfJYQLUhhTWo8FhARhLigfvuWEC4og+ewu5YQAI\u002fjHOF7VhArMdRcP3rWEBjyUO4MOpYQKHAPqGc6lhA\u002fusQF1ToWEDJFadlCehYQDyjrECE6FhAI8NhknDnWEBfFzW00+ZYQIqwhmjH5VhABX9a+4rmWECNRIOoWeVYQIAe2oUZ41hAxopilq3iWEC2oWzPteNYQErmQDXb5VhA7B28cC7jWEDsK+9xhuRYQCcuGRO95lhAZKDbzBLpWEAb0GmjK+ZYQDjSd4s85FhAOnIDx8biWEC8QmLQw+FYQOJarGgq4VhAFB+6m4HfWEDu9UXPbd5YQI7vfgfU3VhA1tg\u002fCY\u002fhWECYZZcKqOFYQHA0fAQZ4lhAyZzVSObiWEBnBBnxBeNYQBvI1s0H41hA4SNwR\u002f7jWEAmJ8Sz+OJYQDgXnOBU4VhAkfDbJJDiWEBF\u002fC6\u002fEuNYQGl1Zp+r4VhAK2WC5AffWECt8100\u002fOBYQB\u002fD\u002fJiU31hA+dWOB2HiWEBqdPSX5d9YQDU7EocE31hAESdly\u002fneWEA9OBTKNeBYQC5yqjw+4VhA8dyDSqrgWECrjtIO3+NYQKcf549g4lhAZL2Ssa3gWED0cV6iauBYQEPeYTZc4VhAClymrT7iWEAl8pJ9beJYQIXPN2474VhAgeonggzjWEAsPGYs3ONYQCMwIqDW5FhA92cG5UXlWEAY2wGfAuVYQD7PmzoQ41hA6j8X+M3jWEA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"gImZQXEO4z+AmcBvQo3iPwD6A1idBOM\u002fgKrpezyy4j8ANDlSDxPfPwC2DNsq2tw\u002fAKJ9YsjK2j8AapWqjpTbPwAtD86wxds\u002fACLxWrww2T8AVbVLjIjYPwCp3akJ9Nw\u002fAK82JQhu2T8AOSxpiV3aPwDrYZ8yy90\u002fAC79o3zP2j8ALLcmlHLcPwDBIs40Y90\u002fAH8Zl4Ih3D8A+knt6GrdP4Df\u002fdxzk+A\u002fgKCL2S4X4D8AiqGbCvfePwDDPWJoet4\u002fAJxKGTks3D8AXk3USabcPwC03wyVqtg\u002fADsYk7Pa1j8AA2\u002fbeRLYPwD1Yxh0cdQ\u002fAAAAAAAAAAAAIFar4hCFPwCQy3pD\u002f6S\u002fAGhBuBk1p78AjGuJuHe7vwCMc6CUEbG\u002fALDTQsVHrr8A+FswTWyivwDc2h0sdLC\u002fALDYNMxpo78AUO49qCSlvwCURImXVbO\u002fACg0Nl8Dp78ACBaxDqy0vwDA42Yx4Xs\u002fAAC\u002fwJcEa78A4GmkGGibvwAAYVqANIm\u002fAJiQTofdpr8AwNKBYNKjvwBQMg\u002fJ5J6\u002fABD8Rh1Alj8A8Czpr56UPwBo1shj0KM\u002fAAB6Ij4YjT8A0GevOLGrPwAuVhZLkcA\u002fAGQh8l0WvT8ABKHH7DO5PwDoWxtnj7M\u002fAABA5PXqCz8AIBI3ee2PPwAQ7VAYpp8\u002fALDPX3Chub8AEHN3eyq0vwBI4BpCKru\u002fAIBPmP\u002f1t78ALGnKK6W3vwCY3s6LXLW\u002fAFRIZuCrvL8A0JvHb\u002fesvwAAaEkjQ4A\u002fAGAFXxurjr8AkKMHEqOTPwD4ndpn\u002fq0\u002fAKCyu+TCgD8A4HdmzuicPwAwTZUJPZM\u002fAACeM7Q0pz8AQCueL6WrPwCgcmZjv7A\u002fADiL3ZNVoz8ASGzjAnCyPwBwbaboYKI\u002fAEjx8Gxysz8AxqRoSjDAPwDYJ0Tbkq8\u002fAEwSgeo7uz8AxCYURea8PwCg1k3VTbs\u002fANzCzUImuT8AdkZHitbAPwCUYLIIOr0\u002fAMil3B+owD8A6Dr\u002f6YG2PwAUS2Nz\u002f70\u002fAHybm7BvuD8A3KAl7ryyPwBIt3ewlr4\u002fAKp\u002fmTkUwj8AGKLfqhXGPwAsifeWzcU\u002fACyaS3Xbyz8AxKWEEcTLPwDOF4tMZ8c\u002fAObUK53fxz8A5CdHpMTLPwDoCLa6wsw\u002fAMw1KQ4U0T8AHi7i6RXTPwAoJdpVbtI\u002fAM8rM+yu0D8AjG4RTyDPPwAUjztFSMk\u002fAC46m\u002f\u002fmyT8AmouI0n\u002fHPwCikgxTa8c\u002fAKImXDJBxT8A6CndHtDDPwAQqJJ9n78\u002fAOxkzR+vwT8AXD+YOonIPwDY+yyoAr8\u002fACit7isRuz8AoN3gDqe4PwBkciOIOL4\u002fAAAYqwnApz8AkHQ2ItS2PwAg80nFgLk\u002fAIb2aFo3wD8AdtTv2AXIPwBqsA2Ras8\u002fAKArWsUHzj8AjVb0ElTQPwCiv4JS+Mo\u002fAOpt0+WIzD8AUtkOo0HIPwAQTlLuNMI\u002fAGgtTeNHsT8AdOBhF128PwB0h7SdXck\u002fACC9ToNmvj8ArOuMarW6PwB8IVPdzsk\u002fAFrqUj4xzT8AoFgnQLDNPwC1tF2Wq9E\u002fALfiKjcD1D8ATMmdhgXUPwAZyOoNbtM\u002fABGAHEW+0z8="},"hovertemplate":"\u003cb\u003eFXY\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#69F0AE","dash":"dot","width":2},"mode":"lines","name":"FXY (Japanese Yen)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"EzOD4hwmWUAzgd+EGiVZQPQHsDoJJllAVdP3eGQlWUA0OVIPEx9ZQLYM2yraHFlAon1iyMoaWUBqlaqOlBtZQC0PzrDFG1lAIvFavDAZWUBVtUuMiBhZQKndqQn0HFlArzYlCG4ZWUA5LGmJXRpZQOthnzLLHVlALv2jfM8aWUAstyaUchxZQMEizjRjHVlAfxmXgiEcWUD6Se3oah1ZQL\u002f7uecmIVlAQRezXS4gWUCKoZsK9x5ZQMM9Ymh6HllAnEoZOSwcWUBeTdRJphxZQLTfDJWqGFlAOxiTs9oWWUADb9t5EhhZQPVjGHRxFFlAAAAAAAAAWUCxWhWHqABZQI6mkBdg\u002fVhA0\u002ffIXBn9WEAdpd0RIvlYQB3j15q7+1hAiqVXBzf8WECB9Fl2sv1YQEmJ+PTi+1hA6mR5xpL9WEA2QvhqW\u002f1YQNuuHZoq+1hAezkZlB\u002f9WEB+ulP81PpYQI+bxYRvAFlAgn7Q9sn\u002fWEBiuXV+Sf5YQPgs\u002fVs2\u002f1hA7S0WTyT9WECoxe+zhf1YQNsMb7MR\u002flhAwW\u002fUAWQBWUDPkv7qSQFZQM0aeQx6AllA0BPxwegAWUD67BUndgNZQBcri6VICFlAWYh8l0UHWUBB6DH7TAZZQPrWxtnjBFlAIq9X3wAAWUCRuMlr\u002fwBZQNEOhWH6AVlAFAzoo5f5WEA8IyJh9fpYQO5HeW81+VhAIOwZgAL6WEC1ZQ21FvpYQFpIDN2o+lhA623mB9X4WECGDAcSYfxYQEBLGhmCAFlA1Qclpwr\u002fWEA5eiAxOgFZQL9T+8y\u002fA1lAld0lF4YAWUB+Z+aMzgFZQNNUmdAzAVlAwHOGluYCWUBoxfOldANZQKic2dgvBFlAZ7F7smoCWUAS27gAnARZQK7NFB1MAllAUjw8m9wEWUBjUjQlGAhZQPuEaFvyA1lAk0Sg+s4GWUCxCUWROQdZQKh1U3XTBllAt3CzkEkGWUA7oyNFawhZQCWYLIJOB1lA5FLuD1QIWUC6zn96oAVZQMXS2Nx\u002fB1lA3+Ym7BsGWUA3aIk7rwRZQNLtHaylB1lA1b\u002fMHAoJWUAM0W\u002fVCgtZQJbEe8vmCllAFs2luu0NWUDiUsII4g1ZQOeLRaazC1lAc+qVzu8LWUDykyNS4g1ZQHQEW11hDllAzDUpDhQRWUAeLuLpFRNZQCgl2lVuEllAzysz7K4QWUBGt4gnkA9ZQIrHnSKkDFlAF53Nf\u002fMMWUDNRUTpvwtZQFFJhqm1C1lAURMumaAKWUD0lG4P6AlZQASqZN\u002fnB1lAdrLmj9cIWUCuH0ydRAxZQPY+C6rAB1lASqv7SsQGWUBoN7jDKQZZQJncCCKOB1lAAGM1AfgCWUAknY0ItQVZQMh8UjFgBllAQ3s0rRsIWUA76nfsAgxZQDXYhki1D1lA0BWt4gMPWUCNVvQSVBBZQNFfQSl8DVlA9bbpckQOWUCpbIfRIAxZQAgnKXcaCVlAWkvT+FEEWUAdeNhFFwdZQLpD2s6uDFlASK\u002fToJkHWUDrOqNarQZZQL6QqW7nDFlALXUpn5gOWUBQrBMg2A5ZQLW0XZarEVlAt+IqNwMUWUBMyZ2GBRRZQBnI6g1uE1lAEYAcRb4TWUA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"ADAzuOPfmT8ANPZH4Pm8PwCQ1RL2Kr4\u002fAMTo9Z3Xuz8AWCiPFs66PwAQBIZ0Xro\u002fAGzDoLiCuj8AoA+Ed42uPwCyJQtJkcM\u002fAPoXBAPlxT8AZEv2rYbAPwAk88HHxLU\u002fAFh2kGCuqz8AgPLdX\u002fKBvwBoKyOGRbW\u002fAFiGDKXArb8AgG3F4HyVvwDUM3+\u002fgLm\u002fAMh6d5oorb8AcN5Qpfy0vwBYfwSGaqK\u002fAADvAFQZfb8AAOvylFSxvwCAaVxwn6+\u002fAMBqtsHxrb8AANq+RI9VvwC4wBXJGa0\u002fAJwUDEJ2uz8ApFLEAbrBPwCsv1ijnrk\u002fAAAAAAAAAAAA6KB1VX2rvwDAVJbMvH2\u002fAAAMi+DpXz8AAPaJUet6vwDQoS\u002fe0JW\u002fAOAWnREPlz8AAC3WueZlvwAwjSWZHJ6\u002fABDT7IK9kD8AeFp725mtvwCg4k6kR7y\u002fAOB\u002fute+s78A5KmoO\u002fe1vwAIEtt1LbG\u002fAIBLjV6Dkr8ATMu+lt+zvwBq4dosf8C\u002fAEjFYRsqsb8ANAMUlPixvwCQxtnV\u002f7W\u002fAKBC9O\u002f\u002fl78AeqtLuwrDvwCaSPbHY8a\u002fAG5Vw0AAzb8AsJ3kFmfKvwBixIg7HMS\u002fAARFHKxJuL8A+L8HIbWmvwDYZxBOtqG\u002fACDMY90EqL8AoPi2u+qjvwCglTLf0IS\u002fAKiEAdUvqb8AIAsTKWq\u002fvwDESLF4ir2\u002fAGjZerIeur8AiIfWbB+4vwAYkHY3dLu\u002fABx1CzmLvb8AzA3P4Oe2vwDieXsKdcW\u002fADL5PpUPwL8A0K6aHtjCvwAmeBOFKcK\u002fAIDXuWEBwL8AFhbKEOrDvwBsESmvj8C\u002fADhi9zY0xr8ApMoZtNfJvwBGRhtvAM6\u002fAD2Ixsmw0b8ApcSyZ8LQvwC+YHAKbdC\u002fAMIFK1HI0L8A9IFbnw7QvwC0MxRbKcS\u002fAMhXvZsmyb8AwiKxImfBvwAogPc98bS\u002fAPq6OTO9wr8A2uvZnUDEvwBgk0uB3MC\u002fAFJVJRGFzL8A4PMDwTrJvwDUkwnlK8y\u002fAE2H2cJ20b8AjKTkRYHVvwB0+yOmgs+\u002fAGKqzrPt0L8A5AdKWtbUvwA8bLFdhte\u002fAD+ls7Du0r8ADs7lyobQvwAR+YPimtK\u002fAJK4BDkPzL8AJp\u002frdKzTvwDvqluK+ta\u002fAJC\u002fDApK2r8ALkNGsILXvwDYVD2FGNa\u002fAAbyuOs12b8AroPisALdvwCZs+Ga1dq\u002fAA4OCALf2L8A4DidPNPcvwAoKy8ood6\u002fAEvb2OVW2L8AGlUvxa\u002fbvwCOEe+yWNq\u002fAGnLYcUO2r8ALQ4cbg3YvwBdK1gGgNe\u002fAEocl3Xu1r8AsWpD2FTVvwCNlRoNMNm\u002fAEqQ1jzJ1L8A1L0zlTLSvwDvMerRftO\u002fAKOOP87C0b8AS0UTjczRvwCIF12449W\u002fAB3SQnPI178AYslhXZzUvwDFqaIvptK\u002fALjpxlcE0L8A8L0gJxrNvwAm2e\u002fmv9S\u002fAAjyAsIP0r8AWlRqtRTQvwC6JugyJ82\u002fAAa2x9EPyr8ARGs9RBnLvwCiFyQLN8y\u002fAJWvPP0S0r8AOSVdA8fRvwD1+ZlQ4dK\u002fAG4DCpqK1L8AtsfpVMnSvwCwpceqCtG\u002fAIW9TrLK1r8="},"hovertemplate":"\u003cb\u003eGLD\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#FFD700","dash":"solid","width":2},"mode":"lines","name":"GLD (Gold Bullion)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"M4M7\u002fp0BWUCN\u002fRF4PgdZQGS1hL2KB1lAMXp95\u002fUGWUAWyqOFswZZQASBIZ2XBllA2zAorqAGWUD0gfCu0QNZQNmShaTICVlA\u002fQuCgfIKWUCyJftWQwhZQMl88DFxBVlAyw4SzHUDWUBsEAFtcP9YQCY1d56u+lhANW9e60f8WEAoqfMxqP5YQAszINCf+VhApxCx7Fr8WEBkyKvWwPpYQBVwP6+y\u002fVhARPyvmov\u002fWEBARcPaqvtYQNBy9BEM\u002fFhAqDLJx0H8WEAmQbtw6v9YQBe4IjmjA1lAJwWDkN0GWUBSKeIA3QhZQOsv1qhnBllAAAAAAAAAWUDjS1FVkPxYQK2mzQyJ\u002f1hADIvg6R8AWUAo2LlSlP9YQOMFHfKi\u002flhAbtEZ8XABWUCmU4wy1P9YQC2nbTYe\u002flhAMc0u2AsBWUCxlJDETPxYQFhH7Bbu+FhACGARShD7WECH1RUxgvpYQH47iaK0+1hASCsXytf+WEAtTVAaCPtYQEuPkmnA91hAro4nebX7WEAz\u002f\u002fragftYQFyOiQqA+lhA1rsAAYD+WEBDKlqievZYQLPbBBzO9FhASVWe33\u002fxWEAosY10zPJYQM+dO+Lx9VhAv+74lO35WEABCN9bKf1YQAXzPTbJ\u002fVhAfIZTZP\u002f8WEDsIImogv1YQFNrBnlZ\u002f1hAa89fBdr8WEA4Pbt1JfhYQM+t02Gd+FhApklhU3j5WEAeXsok+PlYQPpbIvIi+VhAuSK9MZ34WECNPMwHRvpYQA9DwnpF9VhAZ4NgNfj3WECYqLLwk\u002fZYQO1Ddj3r9lhAQBQjT\u002f\u002f3WED19Jr3CvZYQEp3ayi491hA5E6E5OX0WECuGvMlFPNYQN1ccsj\u002f8FhAw3c5Nk\u002fuWEBbO02YPe9YQEKfj\u002fWS71hAPvrUrjfvWEAMfqRg8e9YQCbmdVLr9VhAHFQhsmzzWECfbqduTPdYQPYfgrDD+lhAgyJjZqH2WEATChOx3\u002fVYQFA2Wr+R91hAV1Vtd73xWEAQBn6fYvNYQBY2ew3q8VhAs3gmPYnuWEB0Wxu6fupYQEYC7qw+8FhAnlUxTBLvWEAc+LWlKetYQMSTTqJ56FhAwVpMTxHtWEDyMRo1ee9YQO8GfB1l7VhAt6N9Y\u002fjxWEDaYBSLU+xYQBFVpHUF6VhAcEDz9bXlWEDSvLlPfehYQCirwnrn6VhA+g1HFMrmWEBSfB1P\u002feJYQGdMHmUq5VhA8vH3\u002fSDnWEAgx2LDLONYQNjU0Nde4VhAtSQnGqnnWEDmqtA6UORYQHLuEE2n5VhAlzSeOvHlWEDT8eOR8udYQKPUp\u002fl\u002f6FhAtuNoihHpWEBPlbwnq+pYQHNq5fLP5lhAtm8pwzbrWEAsQsxqze1YQBHOFS6B7FhAXXHAMT3uWEC1uuxyM+5YQHjookcc6lhA4y29jDfoWECeNp6iY+tYQDtWXdBZ7VhASBY5qPvvWEAIoW\u002fscvFYQNomEBlA61hA+A39PfDtWECmq5VK6+9YQKPsi2Zs8VhA\u002fSQcF\u002fjyWEBeSuFdc\u002fJYQC\u002f0bXrk8VhAa1DDAu3tWEDH2qL8OO5YQAsGZq8e7VhAkvz1ZXXrWEBKOBarNu1YQFBaOFX17lhAe0KxTTXpWEA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"AEAXolQv5L8AHFmdbTjhvwAfz+J7GOG\u002fACfwLVef37+A9VmHbzvgv4A\u002fmdkdD+C\u002fAHZ4YpS43L8ABUesQC\u002fbv4Bn05U5N+W\u002fgKEkXxZ26b+AYngx6ePivwDjZ6VpEd6\u002fABpFbrfT2L8A2ouZ9ebYv4AXCLx70eG\u002fgNu+8Ajt4L8Aa2K4xmjVvwBGh8gBIN+\u002fAE6RP\u002f0i3L8APngd1nrSvwBA0koK5sm\u002fAOjgC\u002fjcsT8AaIbzRZSuPwASzee9D8M\u002fAFBYhIwOnj8AwOEFmvegvwBgW+PF5oK\u002fANgZfFFHwL8A9IduG83SvwA8uLLDocm\u002fAAAAAAAAAAAA7LY\u002fjDDAPwDUAHe5K7E\u002fACz4lPKfwL8ApK\u002fuFQi1vwBsVpOmR7i\u002fAOB7wS5mtD8AkM2Y8DXBPwCdXs3ZzNI\u002fAF4esg0YyT8ApnU8CgzKPwBZ5M\u002f9B9A\u002fAJh6EdmCuT8A8KNWoPm0PwCQDLB6b8U\u002fALCfg4gepT8AhITUV++yvwAM9Xb+BcC\u002fAHzqjLw+v78AoGtUXVfKvwAoidqYKr+\u002fAMosGmm2xL8AEBrIwE7FvwCsw4oAb7q\u002fABREntr5t78A7vQePjLRvwB45yDEGdK\u002fALBxBy\u002fHkz8AIFaDPFuRPwCwogXEqpa\u002fAHy1Y0T7vb8AUDos2vrHvwCENaoimMu\u002fADAN4hCewr8AVC6scAqxvwCU9LHJLc2\u002fAMAxqwcEjL8AjOoB6nq\u002fvwAsz1EfMsK\u002fAALFyssU0b+AwUM3BXjgv4DAG67t9OK\u002fAJecfWE8278AMFVErkjcvwAy0+WFMt2\u002fAGyvFOr3378AjjG\u002fSB3kvwDQ\u002fGmqnuS\u002fAEUWGOTY4b+A8\u002fM+0mDjvwAq+f+\u002f1OW\u002fgPtN0KE25L8Ad16qLwrlv4CfJHEgrOa\u002fgMkK1YcA5r+AKlhQxbvmvwCxWPN3Z+W\u002fgCMFsVNG478As+jl4ijjvwAezUkg9+e\u002fADZaMGZx57+ARmYGF2fpvwDlss0wPum\u002fAIjq2cDP578AfYebaeLtv4ACYS2dr+6\u002fADH5nG9C8b9A3W0VRozxv8C0BUib0fG\u002fQMJIlA59878AAj7P\u002fIHwv4Dt1i1nXPC\u002fgClJe0Tg8r\u002fAstnRICvzvwDwlB8apvC\u002fAEJkMjJ2778AzldxXULxv4AStzVFPO+\u002fwNcZiYp78b8At2iVbSjxvwCDCiozrO6\u002fAEGUxWyQ8r9ALbJnSffwv8CpEzqQtfK\u002fAMQfYgCJ8r8AlBSlibDxv8Dvf+LMvfC\u002fwBDeWfo48r8A6Uk\u002fs4Pxv8A8bQdXQfK\u002fQNYDAd9j8r+AJVUQJV7vvwADSd55ou2\u002fAKlgxX+x7r+ARnJwSaHrv4CaCOKmIei\u002fgD6sz9hq578AmVBuE+3lv4A5JcxWVeO\u002fgFFjh7\u002fc4L8A23citsfdvwAhbajMqOG\u002fAOx+7m9x4L+A02ftbrjgvwCd8IGAAeO\u002fgNWkQMcd5L+A2WMh0a3mv4Bv4htC3Om\u002fAMqY+85q6b8Avh1BfSbovwCpWft0auO\u002fgKMa+QtP4L8AJ49zBHDfvwAXLdjYAdi\u002fACQN7OP4278AsEM5yrfPvwAae8PFG8K\u002fALhS6iHHtL8AsjioCyHMvwDsdaxIU8K\u002fABTHh23kzb8="},"hovertemplate":"\u003cb\u003eUSO\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#FF9100","dash":"solid","width":2},"mode":"lines","name":"USO (WTI Crude Oil)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"gNG7VqHXWEDITcUkj91YQMJhOgjP3VhA2Q\u002fSqGDgWEAVTPEgid9YQIHNTMTh31hAioeda0fjWED7uFO\u002f0ORYQDFZ1IyR1VhAvbZB0xPNWEA7D50tONpYQB2YWpbu4VhA5rqRSCznWEAmdGYKGedYQNHvhwhd3FhASYIe7iXeWECVnUc5l+pYQLp4N\u002f7f4FhAsm7AAt3jWEDCh+Iphe1YQOCW2voM81hAOvgCPncEWUDNcL6I0gNZQInm896HCVlAhUXI6OABWUDIQ78M4f1YQCXl0Mlo\u002f1hAFPNBV9z3WEAMeJHkMu1YQOKjJh4v81hAAAAAAAAAWUB22x9GGAhZQDXAXe5KBFlA6oO1BrD3WEAXVIT6vfpYQGUqWxbu+VhA+F6wixkFWUDIZkz4mghZQJ1ezdnMEllALw\u002fZBowMWUDTOh4FBg1ZQFnkz\u002f0HEFlApl5EtmAGWUD8qBVoPgVZQEgGWL23CllA9nMQ0aMCWUDf3goqRPtYQHqFxAD991hAYcXcUDD4WEAwylVR1PJYQLZdyVk1+FhAm+lyy6T1WED48pufWPVYQBVP3T9k+VhA+25YiQH6WEASC+HBze5YQIgY3zvm7VhAG3fwcjwBWUBiNcizFQFZQNWlv1OV\u002flhAoRLnLoH4WEDY4umSAvRYQD7lqu4z8lhAaPmO97D2WEBr9NRjvftYQLYFJxtp8VhAcqbC3x\u002f\u002fWEBdhX9FIfhYQGoYV\u002fDm9lhA\u002fjo1NOvuWEB9eJH1D99YQH\u002fIoyQW2lhAaWOCnsPkWEDQqrtRt+NYQM4sGnrN4lhAlFDrFQjgWEDknIFuxddYQGAGLKvC1lhAdtPPN07cWEAZGIJbPtlYQKwNAIBW1FhACWRfvJLXWEASQ6ug69VYQMG2Hb+n0lhAbepV8P7TWECrT191iNJYQJ5OGRAx1VhAufWdWHPZWECaLjQ6rtlYQMRlbL8R0FhAlEufMx3RWEBzM\u002fPRMc1YQDaaZJ6DzVhA8CpMfmDQWEAG8cgsO8RYQPs9pcWgwlhAPBuMQfa6WECLSKrnzrlYQC3p35K5uFhA99yuxQuyWED4B8MM+L1YQEqkSGOOvlhAWtsS7n60WEA1mbh8U7NYQECsgZdnvVhAfDebmxPBWEDIoDqK9rpYQNuRlHWHwVhAoZjb1RG6WEAkXapJXrtYQPrqq5mnwlhA\u002fK7pTL61WEBLN2HaIrxYQFmxF78ptVhA8IB3\u002ftu1WECwrWvZPblYQEEAdswIvVhAvYeYFhy3WEBc2AIz8blYQA1L4qP6tlhAp\u002fD7g3C2WEC1Vd+1Q8FYQPptQwy7xFhArj51AJ3CWEBzGx9tvchYQMvuO7K8z1hAg6dgTirRWEDOXiPZJdRYQI21Z1JV2VhAXTnxgEbeWEAliN1JOOJYQL4lr2au3FhAKAIjIB3fWEBZMCUij95YQMYe\u002fP782VhAVbZ+ccTXWEBNOL1dpNJYQCE7yHtHzFhAbM4IYirNWECExH0Fs89YQK5MCRYr2VhAucoN6GHfWEDZcIz7j+BYQOnSJyf+51hA3PITHAfkWEAoXuMaJPBYQHNCHh3y9lhAUmuFN876WECn4yt67\u002fFYQArFqVvW9lhAdhw8yQ3xWEA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"customdata":{"dtype":"f8","bdata":"ABoye5Ir0D8AlAVQ2HPQPwDMAsw2yNQ\u002fAIbj+2lP0j8AjvJpM\u002f\u002fRPwDE24Ql1s8\u002fAO+T7x\u002fD0T8AJUFZqPDQPwBSon2t\u002ftE\u002fAErkjucW0j8AiqoIA4TSPwAhqEIIu9M\u002fAPLeheY51z8Ag9M\u002fvD\u002fVPwBKkUKbxdM\u002fAHiCyKe90T8A9JuSVsXSPwDT9PdypNI\u002fAMr+GzGS0D8ATH3miefNPwCQudhAFc4\u002fAKaUk+0T0D8AvXpRflTQPwDj9XBMxdI\u002fAGTpRmkG0T8AOtbwhzvJPwCEb+8Wv8o\u002fAIgcn7tVyz8A3m\u002fSRSvNPwC8WmowRMk\u002fAAAAAAAAAAAAuLVQnE2uvwBAyN6146S\u002fAGC3Q3AWt78A4IvflYOwvwBQcvBsHaW\u002fAFD8fuDjmb8AQHXkIZpyPwAA7Gf5M0u\u002fAPhYiEYNqb8AIGizCHKZvwDAX7yNMnm\u002fANjy\u002ff\u002fQoL8AAIdGy\u002fCmvwDAm7Y4WoU\u002fANCfXXPJl78AwKt2qquRvwBgGCU9RoE\u002fACCWnaPKqz8AONC7qeCgPwDQaU9TqJ4\u002fAKhX13wEuj8AdBXSrD\u002fAPwCohn\u002fxkLg\u002fACDyuXwumj8AAFvSJHmuPwDgZGTncIo\u002fABCd5ehYqD8AgCcgnp1svwAMHKD9PLC\u002fANzUIE+tsb8AMMiKmiCWvwDwTb+v4pK\u002fACCmkKVsgb8A6GFWnfuivwAkNMQs\u002fbe\u002fANBLt9U3t78AnOhpzii6vwC4bcZWYrS\u002fADqZXPkjxr8AsiecXZ7JvwDgHLZ+Msi\u002fAOzQBSpJxL8ATkdAXafAvwD0zCRFbLi\u002fABAjVcs4t78AbOs5Zyq6vwDg5ZXn7be\u002fAIiDeRjgs78AOJ7NHz6jvwDYeZ\u002fFM6W\u002fAEB72LZJgz8AIKLSEO+DPwCI4zLzlbY\u002fAGwbCl3UvT8AgNvhAXi7PwC4t15JssM\u002fAOgvio6iwj8AttAz2IzKPwDC3FvRz8k\u002fADilfmJgwj8AYgZ9dKTNPwBMdbUlM88\u002fAO7qTjCSyT8A1oz1EgLIPwBqHEcp8sY\u002fAKSwY021xD8AvB3oQCHEPwDmNyLs7Mk\u002fAKxn5dkgyj8ALtldAqvGPwAqtg219sg\u002fAL6dzdn9xj8A9p9kvfrGPwDqtU9XrMk\u002fAIBViCdaxT8AqhCVTSTGPwAWJC\u002fRs8g\u002fAELMxcSoyj8AGnyL0Y3LPwAMruVwJM4\u002fAFCKkbkJyj8AHsnvxm7HPwD8SsEytsY\u002fADw9RuoKyD8A2MmfxOnJPwB+rSGFzsw\u002fAC6sODPryD8A1CxVp+nFPwBinVVECMc\u002fADQbYP9Oyz8AFNhjsK3OPwD419Dx7so\u002fAIyzLuIfxz8AhGk0XD7IPwCO4NvyRMo\u002fAF6sxKchwz8AlHPBcQfDPwCINPuRv7c\u002fALTajKhTwT8ATJI+pBzAPwAo8XVTUb0\u002fAEhtZDMhuz8AzJ0VUqHBPwC2aEKb+ME\u002fACAZK4VPwj8AJGqtkFW5PwBE+R9lhbg\u002fAJAQKnmsqD8AkCTOcoGxPwCoXFLusa8\u002fAIANT3sTer8AALNLbsaHPwBgguqzNZk\u002fABRP+Flctz8A+JuzwNi0PwB4XCU\u002fnLE\u002fANhU64KssD8AfMSeB1q4PwAMgAqts7Y\u002fAIgBFf0Svz8="},"hovertemplate":"\u003cb\u003eHYG\u003c\u002fb\u003e\u003cbr\u003eRel Minute: %{x}m\u003cbr\u003eNormalized: %{y:.2f}\u003cbr\u003eReturn from T0: %{customdata:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#FF5252","dash":"solid","width":2},"mode":"lines","name":"HYG (High Yield Corporate Bond)","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"GjJ7kisQWUCUBVDYcxBZQMwCzDbIFFlAhuP7aU8SWUCO8mkz\u002fxFZQOJtwhLrD1lA75PvH8MRWUAlQVmo8BBZQFKifa3+EVlASuSO5xYSWUCKqggDhBJZQCGoQgi7E1lA8t6F5jkXWUCD0z+8PxVZQEqRQpvFE1lAeILIp70RWUD0m5JWxRJZQNP093KkEllAyv4bMZIQWUCmPvPE8w5ZQMhcbKAKD1lAppST7RMQWUC9elF+VBBZQOP1cEzFEllAZOlGaQYRWUAda\u002fjDnQxZQMK3d4tfDVlARI7P3aoNWUDvN+milQ5ZQF4tNRiiDFlAAAAAAAAAWUBJ6XVMNvxYQPgmRIlj\u002fVhAKBLvYzr6WEAIHYga3\u002ftYQLbxYVJc\u002fVhAOxD4wWH+WEDVkYdoSgBZQApMA2by\u002f1hA4fQuV978WEB+yXTfaP5YQIEOyTWb\u002f1hApUEA4OX9WEAgL5fmIf1YQN60xdGqAFlAAybKaIP+WEBElVhF5f5YQMMo6TGKAFlAxLJzVHkDWUAHejcVHAJZQJ32NIXqAVlA6tU1H4EGWUC6CmnWHwhZQKrhXzwkBllAIp\u002fL56IBWUBgS5okzwNZQCcjO4fTAFlAorMcHQsDWUCxv8PExv9YQP34l8Dw+1hAyco3rJT7WEB9U1f2nf5YQCELBNXR\u002flhAz3rTmnT\u002fWEDDM1WMoP1YQPfyzrQA+lhADC2SCjL6WEDZhWXMdflYQJJkTmrn+lhAY7NRA+70WEAn7DHRMPNYQJDxpMDm81hAihf9atv1WEBZ3F9RrPdYQMPMtu7k+VhAPLcqzTH6WEAlhTFmdflYQIiGGoYE+lhAHp\u002fh+Qf7WEA5TAY8mP1YQMUQTIdZ\u002fVhA2sO2TZoAWUARlYZ4nwBZQOK4zHylBVlA24ZCF3UHWUDgdngA3gZZQNxbryTZCVlA9BdFR1EJWUBb6BlsRg1ZQGHurejnDFlAnFI\u002fMTAJWUAxgz460g5ZQKa62pKZD1lAd3UnGMkMWUBrxnoJAQxZQDWOoxR5C1lAUtixploKWUDeDnSgEApZQPMbEXb2DFlA1rPybBANWUCX7C6BVQtZQBXbhlp7DFlA387m7H4LWUD7T7JefQtZQPXapyvWDFlAwCrEE60KWUBViMomEgtZQAuSl+hZDFlAIeZiYlQNWUANvsXoxg1ZQAbXcjgSD1lAKMXI3AQNWUCP5HdjtwtZQH6lYBlbC1lAnh4jdQUMWUDs5E\u002fi9AxZQL\u002fWkEJnDllAF1acmXUMWUBqlqrT9ApZQLHOKiKEC1lAmg2wf6cNWUAK7DHYVg9ZQPxr6Hh3DVlAxlkX8Y8LWUDCNBouHwxZQEfwbXkiDVlAL1bi05AJWUDKueC4gwlZQCLNfuTvBVlAWm1G1KkIWUAmSR9SDghZQEp83VRUB1lAUhvZTMgGWUDmzgqp0AhZQFs0oU38CFlAkIyVwicJWUCJWitkVQZZQFH+R1khBllAEkIljxUDWUAkibNcYARZQJVLyj32A1lAysMSspf\u002fWECYXXIzvgBZQCaoPluTAVlAxRN+FtcFWUD+5iwwNgVZQB5XyQ9nBFlANtW6ICsEWUAfseeBFgZZQAOgQuusBVlAYkBFv8QHWUA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003eYield Shift: %{y:+.2f} bps\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#00E676","#FF5252","#00E676","#FF5252"]},"name":"Yield Shift (bps)","showlegend":false,"x":["2Y (SHY)","5Y (IEI)","10Y (IEF)","20Y+ (TLT)"],"y":[-8.08,0.07,-1.05,3.19],"type":"bar","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003eMDI: %{y:+.2f}\u03c3\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#FF1744","#FF1744","#78909C","#78909C","#78909C","#78909C","#78909C","#78909C","#78909C","#78909C","#78909C","#78909C","#78909C"]},"name":"MDI (Z-score)","showlegend":false,"x":["IEF","FXY","HYG","IEI","SHY","IWM","SPY","QQQ","TLT","FXE","UUP","USO","GLD"],"y":[1.91,1.84,1.48,1.38,1.21,1.1,0.85,0.73,0.6,-0.42,-0.3,-0.27,-0.17],"type":"bar","xaxis":"x3","yaxis":"y3"},{"fill":"toself","fillcolor":"rgba(33, 150, 243, 0.15)","hoverinfo":"skip","line":{"color":"rgba(255,255,255,0)"},"name":"10-90th Percentile Band","showlegend":false,"x":[-30,-29,-28,-27,-26,-25,-24,-23,-22,-21,-20,-19,-18,-17,-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,120,119,118,117,116,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,100,99,98,97,96,95,94,93,92,91,90,89,88,87,86,85,84,83,82,81,80,79,78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30],"y":[100.34962929871261,100.34032445757549,100.3717338503891,100.33793376557598,100.29419937003237,100.2101021102684,100.17029858696884,100.13741573881344,100.14540504479073,100.15513381416437,100.19105490749679,100.22149606639582,100.2140442618466,100.18339213252766,100.22525174647377,100.23896673032444,100.29349535987534,100.23048609047164,100.20892411322532,100.24653053201367,100.22767832491839,100.23834051923835,100.23590603401968,100.22818868310515,100.21425455250332,100.20542697730599,100.096729569574,100.07651634493197,100.00441375629957,100.07298934774005,100.0,100.03906210510512,100.02980967411968,100.05524921767618,100.13092716430386,100.08818192741192,100.0915058868163,100.0739233251011,100.07563525082053,100.0770184328416,100.06677331947789,100.11812979737955,100.08888397671373,100.04548761257107,100.0110337442359,100.00767621285927,99.98112210883625,100.08928791970585,100.0777289164574,100.0268509144264,100.02741999428052,100.01312914065421,99.99904961399574,99.99370154467371,99.94708534684806,99.98117077760226,99.96946236610029,99.94886868755327,99.97217314044084,100.0181425774204,100.0408647008972,100.02482048031109,100.05462890404411,100.10260178667994,100.08940441955478,100.18108788878726,100.17735672593015,100.1437337576486,100.13295460737017,100.15013481452691,100.15385666088223,100.14134646998825,100.15131198628181,100.11824611424575,100.0908815079337,100.10635988167904,100.13755392541631,100.14776364272728,100.1168268950967,100.10106612737695,100.05808169023508,100.07800350993881,100.07358434866877,100.0866297991663,100.09544057446675,100.08539479121808,100.0570050279672,100.03838966558527,100.03728320864533,100.01771829631542,100.00259690315713,99.95791589129006,100.03231289441307,100.06278289665869,100.02309723479974,100.04693634065426,99.98972934321861,100.07467756531784,100.09434014534027,100.05880522805691,100.1071748480646,100.08658878305256,100.098890449736,100.06836171216717,100.0827517100164,100.0904624347415,100.07844167850988,100.09431600285306,100.05949769406108,100.06948294451955,100.1222221128367,100.13004754917041,100.12664741667085,100.11356466447681,100.0511083475974,100.03699911353354,100.02519039442166,99.98056030788547,99.94626300050977,99.975211313604,100.0650598444126,100.06419717029549,100.06583962641413,100.05734004894872,100.00888512443846,99.98271649833141,100.01289389423387,100.00749313755833,100.01876482274066,100.00256727433744,100.03316427116505,100.04990234160913,100.08044985742612,100.12763901009238,100.14732393008782,100.17149753335121,100.17975403635505,100.16861953813445,100.19175131092037,100.1947906203521,100.16763576521751,100.14953890689998,100.14658602849572,100.1747084864049,100.26500314157454,100.24695613496463,100.22133680486483,100.23487437173087,100.2330222344809,100.2968561732765,100.27636594311171,99.56169336073155,99.58771661143265,99.61557592548594,99.62706414669738,99.54415738728113,99.53420823932045,99.50406499285627,99.48419143324045,99.49419527393012,99.47747832002304,99.431908034633,99.39810973818024,99.41114238425386,99.4584872032983,99.43981849307217,99.44787641860185,99.42982978154326,99.44180160573137,99.46908488121645,99.47877805871379,99.41956161230624,99.38639803694696,99.39011398550736,99.43562563499275,99.39959916307085,99.34764782125403,99.35428460515995,99.36924185338444,99.36006471336627,99.3943089824866,99.39476196715778,99.48418141238878,99.48154008214313,99.46472942470167,99.44629391045592,99.39382508955383,99.39739822965774,99.3916014623723,99.35929361637834,99.37430091253295,99.38208059829432,99.36169831307654,99.4396701467738,99.50262207106874,99.54114470738085,99.55378012040008,99.55624780762147,99.59671657766116,99.51452251535494,99.5170117902724,99.56281001581496,99.52990838178609,99.54941479006214,99.58352092905501,99.61078231753592,99.64552934922688,99.66599503736883,99.72633614454486,99.69032284037377,99.67170462845925,99.69451316932091,99.68858825932928,99.74624137405223,99.74578950339966,99.70369569570755,99.74953342043403,99.82679516954998,99.80311899212074,99.73874741878457,99.72107478827371,99.73981954899058,99.73558180524579,99.74670915457392,99.78623677313402,99.76896154356776,99.72931912538913,99.70599328688778,99.69615128680611,99.69920947532582,99.68213801236254,99.66216165174261,99.63861622111123,99.59216766632241,99.55594431016087,99.55242632226434,99.53813608025824,99.51332012965459,99.52510744487469,99.57403706481247,99.62417249465263,99.58859801132894,99.60132892725561,99.63318970804843,99.65926744108171,99.67561376793721,99.71735730880263,99.74035815314903,99.70466365941115,99.80269767678632,99.83143971962247,99.77361075261989,99.77175819634688,99.74232608808677,99.69716447182118,99.64601200895949,99.70178599916387,99.65569394667992,99.68424830315688,99.70028654287239,99.65744825361071,99.7120918977879,99.75694985329581,99.76054759344308,99.74835166391233,99.82030055344934,99.86420533295369,99.86727578873436,99.87299072621951,99.92647548313627,99.94505024631636,100.0,99.96342137075436,99.92969548772857,99.9627606001766,99.92372808450453,99.87262077144382,99.8474586380719,99.8883943807608,99.87284744720343,99.83622360797507,99.83373484980419,99.80421495860561,99.82310744485228,99.83143068928459,99.85163890259518,99.87168782933489,99.84483434650505,99.77886998395579,99.79428470975272,99.74520872444123,99.70311241077361,99.70170997883999,99.7200161573424,99.70428706778053,99.69755763811162,99.71339055626551,99.65205931690679,99.69154022217306,99.6889472127588,99.6120272987148,99.63191379902206],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"fill":"toself","fillcolor":"rgba(33, 150, 243, 0.25)","hoverinfo":"skip","line":{"color":"rgba(255,255,255,0)"},"name":"25-75th Percentile Band","showlegend":false,"x":[-30,-29,-28,-27,-26,-25,-24,-23,-22,-21,-20,-19,-18,-17,-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,120,119,118,117,116,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,100,99,98,97,96,95,94,93,92,91,90,89,88,87,86,85,84,83,82,81,80,79,78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30],"y":[100.09443606974877,100.12473604927325,100.16029632431402,100.18994397574058,100.15073316163475,100.09291311851204,100.0881293327545,100.0936519817887,100.12041818839211,100.12925239571008,100.08605283352364,100.1339813974768,100.13305803819468,100.13816900849754,100.1648481727253,100.17263258252022,100.23108137687922,100.22305212192836,100.18839718734395,100.2223804150965,100.19682681473603,100.22727076268471,100.23497989453696,100.17513224805661,100.14065163355315,100.14421951622379,100.0701973834319,100.05220848970214,100.00371726498732,100.0660187706077,100.0,100.02172412131974,100.0008902995515,100.01241719666342,100.03558415646646,99.94706988115087,100.0578676887923,99.99456601303142,99.96424307445034,99.9440457633177,99.94290821979548,100.04341487371808,99.98467622054159,100.01219239833952,100.00012572840777,99.99628793784055,99.97344507177701,100.0765617006718,100.0086624291274,99.97933969555581,99.95471149230245,99.94661688575479,99.93301654757268,99.98341015750444,99.94003951926994,99.97951564936247,99.95904856808015,99.90422168388929,99.92996475398168,99.99561365436342,99.97817335435573,99.98218520646228,100.04234178572575,100.02112220585315,100.08035269410999,100.175364585834,100.17063906284392,100.1421289342278,100.12762397257194,100.09825926516937,100.11670442983942,100.089961807794,100.08716031290452,100.09115030892958,100.06905928332728,100.05548027087619,100.0338693475641,100.03053683904137,100.07264014819579,100.09014897738876,100.0475019656498,100.03634072168657,100.07096257441432,100.08145911467264,100.05987395433174,100.06873037154168,100.0522626367283,100.0213846993377,100.01268392356026,99.99734748129234,99.9882286965304,99.95785384900455,99.99425312543609,100.06247397481616,99.95484098284928,100.03850280401558,99.98179935970612,100.04642517988115,100.09081476831795,99.96547942008252,99.97880996903335,99.96112992851812,99.96012628764309,99.96685692317102,100.01257079015504,99.98356842186547,99.98200612511657,100.0116531975086,100.0005819870594,99.93950473100689,100.02026892233422,99.99687949600884,100.0017140336201,100.10902372795599,100.04541320800675,99.94997277133659,99.94824082853296,99.91667795830841,99.86833730921893,99.89869580379754,99.93623553709256,100.00182344133313,100.00701544214401,100.04988732454922,99.99675576567391,99.95824849039427,99.97073686380322,99.94792207577117,99.94211861397017,99.93517404831226,99.9628098573626,99.93074268885425,100.02024465788013,100.0862483105446,100.07420955401795,100.0437851205936,100.01892314451908,99.98468263719813,100.01349397816979,100.00510786555282,99.99256425316372,99.99191857195741,99.92132736199744,99.97111394948209,100.07462873290409,100.01108339240889,99.94439678531222,99.98475860950732,99.9883507795237,100.05572614322615,100.11127897771064,99.70791323592596,99.71492670034561,99.76728658136165,99.75850789015517,99.67342892464201,99.65378124533115,99.65100964992412,99.64710525130882,99.6572818310404,99.67193792889724,99.6706182157319,99.61814048512284,99.61441668643467,99.65700438578001,99.60445394478641,99.68380128812363,99.69104246239644,99.6840262129652,99.7078768058324,99.6828123988936,99.64514742058289,99.68149222120881,99.7015867892962,99.6764338124671,99.54139765571627,99.44938235559644,99.46012651711305,99.46229786434256,99.43655815997639,99.43570531061312,99.44383029571726,99.51689970637123,99.48709359745052,99.50912533148518,99.46892413125491,99.40165418826645,99.401679935754,99.43710415920839,99.36275482230478,99.41527772132427,99.4314771077085,99.3753353923532,99.45519215572571,99.54067910585313,99.58391619625245,99.57680121143711,99.56684634862567,99.69839049061804,99.65603360615889,99.61914328262438,99.61379476923457,99.59313043320091,99.58227455949289,99.66357481629102,99.68862590322762,99.78521531248823,99.79341544868174,99.84934814873289,99.85271907758737,99.84239125130736,99.85658054536644,99.87135220700881,99.9172906791735,99.91724689428678,99.87463590776304,99.97877244574902,100.03009133908127,99.94489834819711,99.89920899267949,99.98120439876466,99.98076136136042,99.98638787975321,99.92130629619878,99.9714176116259,99.90113167404314,99.9360845872222,99.91896878019033,99.92074274509926,99.89743430755313,99.89625681307581,99.88671006858321,99.89268886463243,99.89242951414813,99.83584382717969,99.87176678894333,99.87541905799075,99.7669714223128,99.81437718285882,99.87042210397594,99.87762210930768,99.795916777034,99.8462944429459,99.88416768272658,99.87578253827688,99.87438319635478,99.88823181713819,99.82510725040622,99.8370627519137,99.91754133809442,99.88004905193438,99.85991180750048,99.81904364545639,99.82905710898817,99.78990125023223,99.73618812867434,99.76567844763949,99.76301401079432,99.75819724939478,99.72508990814582,99.6815345348475,99.73500906555525,99.76296460477559,99.76609753247749,99.82952608178462,99.84921757050847,99.87329095478859,99.87827321170674,99.87508774085994,99.95502309533802,99.95990928841498,100.0,99.98659795545464,99.94855839107389,99.98520683304427,99.9367003788868,99.91513168628889,99.89496046303181,99.92039793359203,99.95799471227164,99.8757539495025,99.8959545406774,99.88833890120634,99.86485161924293,99.8340567465304,99.86422791694251,99.90110384049274,99.89327267134782,99.79192173677714,99.8507088705612,99.8000020424836,99.74106891266824,99.72153494427377,99.73948493300054,99.77030093788154,99.75208439334085,99.80646800051419,99.73495499107557,99.7502460256139,99.71298933779396,99.65838502863062,99.73760022335418],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"line":{"color":"#64B5F6","dash":"dot","width":1.5},"mode":"lines","name":"Cohort Median","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"s4oVjk8BWUAbgU\u002fouAFZQHVwgm4JAVlACzQE81P+WEBHnUAdVABZQAyNgZ3HAVlA+93OlnEEWUBNtIBWJAVZQI7D6pqZB1lATf+LvdgGWUCok29Z9QRZQBepK\u002fzFBVlA7ZsJQlQGWUBg1QCe1whZQJ0ExxqUCVlAXm4+8coKWUBinuK9SglZQDHNu287B1lAAQiSWQMKWUDRV3rnsw1ZQGsVi2SOC1lApkArAYoNWUBsvB32hQ1ZQHnKeCOTCVlAAaDYpXkHWUB5\u002fnjWuQFZQNz6PVPvA1lAlboCVfsCWUA7R3Dxqf9YQJ\u002fHRZb6\u002f1hAAAAAAAAAWUDvPOZVL\u002f5YQAx2rgTS\u002fVhAM2AbnrD\u002fWEDB\u002f\u002fV4DPtYQO2oegXN+lhArd29C7P5WEBHSM1sePZYQMVOPsys91hAHPMbaIX0WEBTlQKgj\u002fZYQIjL8ETJ81hAbyNmBXPyWEDpJKUOqPVYQNylxO4t91hAG5ZuwiHyWEBc7gV0MfBYQDi6JJMj81hACQCB0YL3WEAlHw6ef\u002fdYQAB3ACkM91hAxzeaHXb7WEB4nUtI9\u002fpYQEub7JPl+1hAo9YibAD8WEBI3OfndPpYQOtWketO+FhA992INPr4WEA3cX1N1vpYQFZortfK\u002fFhAlDF\u002f9E37WEDY5iGZyfpYQJWa\u002fekeAFlAaEbBkqD\u002fWEBVlMPWYfpYQF6c6rNG\u002fFhAMBZUQ8D8WECuz0ggp\u002fVYQJnqgiKx\u002fVhAgQfwphf6WEDldCt9G\u002fpYQEdMhMt6+1hAJcCseuT7WEBmZfrVPP5YQDtff2s6\u002flhAjUSUjEf9WEAtUGdat\u002fxYQJz+wG3L\u002flhAGibTEhQBWUBZC3IUeQBZQJCtNSC0\u002f1hAz7KYHSUBWUArGQUCzgBZQDv\u002fKeJuAFlApPZISA0CWUDXno7Sl\u002f9YQDszs\u002fpZAFlA9XYghP79WEBUXTQyl\u002f9YQGE3c8+D+VhAACbxrwP4WEAdDqy03fhYQFY65YcX+VhAlp2Ch2D2WEAyoRtwNvZYQGlDqKDI9FhA\u002fGvSn4vuWEAccIm31+tYQN+pPGXK7FhAxktClSvsWECx0UZW\u002fu1YQJi0g3re6lhAMB4omOrtWECgROO4wfNYQGyJRO2p8lhAwwOE3GP7WEBYwc2xEv1YQGVAJ1De91hAFjeUOiz0WEAQSxees\u002fBYQCDn6QbH7VhAIGIq+SfwWECjCTja0PdYQBg7kalT9VhAWFIJj5PzWEDOrr6i3fFYQF+bh+GP9VhAbYZG8Xf2WEB180fmQPZYQFOgNywq+FhAGa+0yOP3WEAItuJtAvtYQISb72sA\u002flhAMMIawuQCWUA95HnszP1YQEBl08ST+1hA9s7AYPr6WEC9Yk06oPZYQM9JEn9p91hADci+I2L5WECpZsIpxPtYQBxZaGMQ+VhAPIxebRz7WEBkr3NTL\u002fdYQElzJbT6+1hAXDSy90z+WEDWCHzb8f5YQLOR\u002f9TA\u002fFhAsbZEZgr8WEA0K7PpiftYQO9geDA+\u002fFhAEwDFPDv9WEA6qV5ZZPpYQC\u002fXem8f\u002fVhAup0pY6z7WEAlIRQq5\u002ftYQMo12QDF+1hAjPjKP1H7WECMx+r2l\u002fZYQHoWJCE39lhAYVJeDYD5WEA="},"type":"scatter","xaxis":"x4","yaxis":"y4"},{"line":{"color":"#FFD700","width":3},"mode":"lines","name":"Current SPY","x":{"dtype":"i1","bdata":"4uPk5ebn6Onq6+zt7u\u002fw8fLz9PX29\u002fj5+vv8\u002ff7\u002fAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eA=="},"y":{"dtype":"f8","bdata":"0idYXvUbWUCKweHMLRxZQFfQXXQbG1lABDqY3cAYWUC+9D6YXBlZQL6A\u002fcdpHVlAPXxAebsXWUB+aDfWuhRZQAMjpvs7F1lAUOhC60MYWUDc3eWB1hhZQLFBIiSyF1lAcNW94fUUWUDMl1nZQBZZQEf8XprMGFlAN1Kq8a0YWUAX5VhGPxRZQICrVh4EFFlAQyRxiPQYWUCbuCnHtRtZQEWJyZSUGVlAP3wi0CUZWUB59wngmhBZQBtges3TE1lAMX0YMNIRWUBuZ6aiqBRZQO4bzkjfEllAbsHVp7sSWUDoZySbUQ5ZQHD\u002fuuiKD1lAAAAAAAAAWUBTpAm0tv1YQFn6VHJg+FhALEuOB\u002fT4WEDvczwE0vVYQCugKjFD81hAm1y4DiLuWEA\u002f+A0EP\u002fVYQN\u002fZBQtS9VhAqAsl6Dr5WEB3uH0j\u002fvhYQJJ34urz+lhALjwgw138WEB9M4dMhwBZQJeZvLMr\u002f1hAFduvyiz7WEDH9k4M0fdYQEWsdAIA91hAurqQ96r2WEAOBUgQYPRYQP7Kldni9VhAaAG3fvPzWEA+kwVDyvNYQI4bi3ZM81hAINs5e5ztWEC\u002fubOnd+1YQFjgSGb+6lhAo24X0BTpWEA6z7Nhnu1YQPL6MaXT7FhA2KkYDoPwWEBV1xRTFu5YQFyefdo+51hAkM6SFDrmWEAUTjv1xOZYQMcN3Fim5lhAaxSU2KrrWEBU15xvJO1YQC6w7dGE5VhA0ClcB\u002f\u002fkWECotBMazeJYQEGpAxD951hAMNk3sJDpWECDGGmGa+dYQLDInjBn7FhA8DGh7ZvuWEAANfd5m+9YQF4XO88Z71hAL5Gk1sfxWEB4bQs\u002f6uxYQBl2bIbk6VhAVWU0UBLmWEA\u002fw26kquVYQEopkBWc41hAAVG2icbeWEDzNB035eJYQBbND3UE5lhArhIpHx7lWEB0Cy\u002f84+hYQEQb1WyB6VhAUE4F\u002f+HpWEByEVqzm+9YQHeLFI297FhA8PooYuvvWEBZLGp8qPJYQGRJMY3V8VhAIcVL3hnvWECw+uTdW\u002fNYQM+MTSf89FhATdfMIgvzWEAoF\u002fVtavNYQCnV5hdq9FhAB7Yz9Eb2WEBOd0ZmJvNYQJTGYXd26lhAiPIiU+buWEDQ2aH4IPFYQNU5O+677VhAYBzVvcL2WEBDERYK+vNYQDgowpbA8lhA8wNXoBHzWEDICpKLl\u002fVYQCKF1F5O+FhAqR2AmvHyWEAbEzOqbfNYQJZ4diHT9FhAeAfxbDP2WEA4\u002f4tjDPpYQDduJb+\u002f91hA0pWsJJ\u002f3WEBYFYd8VPxYQBtU3g3w\u002flhAOdWlnTIEWUBv5giupgZZQAuXJEmMCVlAsLp8Yj8JWUCIqOpKMgBZQClyo\u002fgX\u002fVhAJSLX\u002fln+WEDSQ5CSJvlYQL0UnaLk9lhAeAh9oov3WECi7n4+SPtYQIXMLqge+VhAsLmVL8L2WEBB1hv04\u002fVYQIrQ8d\u002fA9lhACe34pkfyWEDOXAFuYvhYQI2hy5n9+lhAgYaj4Un5WEAR5gltdP5YQPzjlHW4\u002fFhAveBFqUn+WECJFawLxvxYQAuSkViJAllAO9+izOcAWUDCrMjUbgBZQO9luUxSAllAm1eWyRICWUA="},"type":"scatter","xaxis":"x4","yaxis":"y4"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,0.46],"title":{"text":"Minutes from T0 Release"},"gridcolor":"#223046"},"yaxis":{"anchor":"x","domain":[0.56,1.0],"title":{"text":"Indexed to 100 at T0"},"gridcolor":"#223046"},"xaxis2":{"anchor":"y2","domain":[0.54,1.0],"title":{"text":"Bond Tenor"},"gridcolor":"#223046"},"yaxis2":{"anchor":"x2","domain":[0.56,1.0],"title":{"text":"Yield Shift (bps)"},"gridcolor":"#223046"},"xaxis3":{"anchor":"y3","domain":[0.0,0.46],"title":{"text":"Asset Ticker"},"gridcolor":"#223046"},"yaxis3":{"anchor":"x3","domain":[0.0,0.44],"title":{"text":"MDI (Standardized Z)"},"gridcolor":"#223046"},"xaxis4":{"anchor":"y4","domain":[0.54,1.0],"title":{"text":"Minutes from T0 Release"},"gridcolor":"#223046"},"yaxis4":{"anchor":"x4","domain":[0.0,0.44],"title":{"text":"Indexed to 100"},"gridcolor":"#223046"},"annotations":[{"font":{"size":16},"showarrow":false,"text":"\u003cb\u003eCross-Asset Transmission ($T_0=100$)\u003c\u002fb\u003e | Shock Z: +1.52\u03c3","x":0.23,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u003cb\u003eYield Curve Level Shifts & Twist\u003c\u002fb\u003e (Basis Points)","x":0.77,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u003cb\u003eMacro Dislocation Index (MDI)\u003c\u002fb\u003e | Statistical Arbitrage Edge","x":0.23,"xanchor":"center","xref":"paper","y":0.44,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u003cb\u003eHistorical Cohort Fan Chart\u003c\u002fb\u003e | SPY","x":0.77,"xanchor":"center","xref":"paper","y":0.44,"yanchor":"bottom","yref":"paper"},{"arrowcolor":"#FF1744","arrowhead":2,"font":{"color":"#FF1744","size":10},"showarrow":true,"text":"T0 Release","x":0,"xref":"x","y":100.0,"yref":"y"},{"font":{"color":"#FFD700","size":11},"showarrow":false,"text":"\u003cb\u003eRegime:\u003c\u002fb\u003e Bull Steepener | 2s10s: +7.0 bps","x":0.5,"xref":"x2 domain","y":1.08,"yref":"y2 domain"}],"shapes":[{"line":{"color":"#FF1744","dash":"solid","width":2},"type":"line","x0":0,"x1":0,"xref":"x","y0":0,"y1":1,"yref":"y domain"},{"line":{"color":"#FF5252","dash":"dash","width":1},"type":"line","x0":0,"x1":1,"xref":"x3 domain","y0":1.65,"y1":1.65,"yref":"y3"},{"line":{"color":"#69F0AE","dash":"dash","width":1},"type":"line","x0":0,"x1":1,"xref":"x3 domain","y0":-1.65,"y1":-1.65,"yref":"y3"},{"line":{"color":"#FF1744","dash":"solid"},"type":"line","x0":0,"x1":0,"xref":"x4","y0":0,"y1":1,"yref":"y4 domain"}],"title":{"font":{"size":14,"color":"#E0E0E0"},"text":"\u003cb\u003eQuantNexus-Macro Terminal\u003c\u002fb\u003e | US Non-Farm Payrolls (Sep 2024) (2024-10-04 12:30 UTC) | Actual: 254.0k vs Cons: 140.0k | Surprise: +114.00k (+1.52\u03c3)"},"legend":{"font":{"size":10},"orientation":"h","yanchor":"bottom","y":-0.08,"xanchor":"center","x":0.5},"paper_bgcolor":"#121824","plot_bgcolor":"#182232","height":900},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+
+    <!-- Signals & Execution Blotter -->
+    <div class="section">
+        <div class="section-title">Macro Transmission Dislocation (MTDE) & Alpha Signals</div>
+        <p style="font-size: 13px; color: #94a3b8; margin-top: 0;">
+            Identifies assets lagging behind theoretical macro elasticity or over-reacting due to liquidity exhaustion.
+        </p>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Name</th>
+                        <th>Signal</th>
+                        <th>Current Px</th>
+                        <th>Fair Px</th>
+                        <th>Dislocation</th>
+                        <th>MDI (Z)</th>
+                        <th>Target Px</th>
+                        <th>Stop Px</th>
+                        <th>R:R</th>
+                        <th>Half-Life</th>
+                        <th>Win Prob</th>
+                        <th>Trading Rationale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <tr>
+                    <td><b>IEF</b></td>
+                    <td>US Treasury 7-10Y (10Y Proxy)</td>
+                    <td><span class="badge-sell">SELL</span></td>
+                    <td>$93.88</td>
+                    <td>$93.29</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.63%</td>
+                    <td><b>+1.91σ</b></td>
+                    <td>$93.29</td>
+                    <td>$94.44</td>
+                    <td>1.05</td>
+                    <td>20m</td>
+                    <td>81%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Lagging transmission: Asset has failed to price in full hawkish shock (trading +0.63% above macro parity). Short convergence.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>FXY</b></td>
+                    <td>Japanese Yen (USD/JPY Inverted)</td>
+                    <td><span class="badge-sell">SELL</span></td>
+                    <td>$61.82</td>
+                    <td>$61.37</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.73%</td>
+                    <td><b>+1.84σ</b></td>
+                    <td>$61.37</td>
+                    <td>$62.19</td>
+                    <td>1.22</td>
+                    <td>13m</td>
+                    <td>80%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Lagging transmission: Asset has failed to price in full hawkish shock (trading +0.73% above macro parity). Short convergence.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>HYG</b></td>
+                    <td>High Yield Corporate Bond (HYG)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$76.90</td>
+                    <td>$76.53</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.49%</td>
+                    <td><b>+1.48σ</b></td>
+                    <td>$76.90</td>
+                    <td>$76.90</td>
+                    <td>0.00</td>
+                    <td>18m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = +1.48 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>IEI</b></td>
+                    <td>US Treasury 3-7Y (5Y Proxy)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$114.44</td>
+                    <td>$113.93</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.45%</td>
+                    <td><b>+1.38σ</b></td>
+                    <td>$114.44</td>
+                    <td>$114.44</td>
+                    <td>0.00</td>
+                    <td>22m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = +1.38 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>SHY</b></td>
+                    <td>US Treasury 1-3Y (2Y Proxy)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$81.45</td>
+                    <td>$81.13</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.40%</td>
+                    <td><b>+1.21σ</b></td>
+                    <td>$81.45</td>
+                    <td>$81.45</td>
+                    <td>0.00</td>
+                    <td>37m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = +1.21 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>IWM</b></td>
+                    <td>Russell 2000 (IWM)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$205.24</td>
+                    <td>$203.65</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.78%</td>
+                    <td><b>+1.10σ</b></td>
+                    <td>$205.24</td>
+                    <td>$205.24</td>
+                    <td>0.00</td>
+                    <td>6m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = +1.10 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>SPY</b></td>
+                    <td>S&P 500 Index (SPY)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$502.97</td>
+                    <td>$500.82</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.43%</td>
+                    <td><b>+0.85σ</b></td>
+                    <td>$502.97</td>
+                    <td>$502.97</td>
+                    <td>0.00</td>
+                    <td>9m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = +0.85 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>QQQ</b></td>
+                    <td>Nasdaq 100 (QQQ)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$433.27</td>
+                    <td>$431.13</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.49%</td>
+                    <td><b>+0.73σ</b></td>
+                    <td>$433.27</td>
+                    <td>$433.27</td>
+                    <td>0.00</td>
+                    <td>10m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = +0.73 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>TLT</b></td>
+                    <td>US Treasury 20Y+ (20Y/30Y Proxy)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$90.15</td>
+                    <td>$89.88</td>
+                    <td style="font-weight: 600; color: #fb7185;">+0.29%</td>
+                    <td><b>+0.60σ</b></td>
+                    <td>$90.15</td>
+                    <td>$90.15</td>
+                    <td>0.00</td>
+                    <td>15m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = +0.60 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>FXE</b></td>
+                    <td>Euro FX (EUR/USD)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$100.17</td>
+                    <td>$100.31</td>
+                    <td style="font-weight: 600; color: #34d399;">-0.14%</td>
+                    <td><b>-0.42σ</b></td>
+                    <td>$100.17</td>
+                    <td>$100.17</td>
+                    <td>0.00</td>
+                    <td>49m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = -0.42 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>UUP</b></td>
+                    <td>US Dollar Index (DXY Bullish)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$28.35</td>
+                    <td>$28.38</td>
+                    <td style="font-weight: 600; color: #34d399;">-0.10%</td>
+                    <td><b>-0.30σ</b></td>
+                    <td>$28.35</td>
+                    <td>$28.35</td>
+                    <td>0.00</td>
+                    <td>13m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = -0.30 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>USO</b></td>
+                    <td>WTI Crude Oil (USO)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$75.30</td>
+                    <td>$75.57</td>
+                    <td style="font-weight: 600; color: #34d399;">-0.36%</td>
+                    <td><b>-0.27σ</b></td>
+                    <td>$75.30</td>
+                    <td>$75.30</td>
+                    <td>0.00</td>
+                    <td>24m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = -0.27 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>GLD</b></td>
+                    <td>Gold Bullion (GLD)</td>
+                    <td><span class="badge-neutral">NEUTRAL</span></td>
+                    <td>$214.18</td>
+                    <td>$214.36</td>
+                    <td style="font-weight: 600; color: #34d399;">-0.08%</td>
+                    <td><b>-0.17σ</b></td>
+                    <td>$214.18</td>
+                    <td>$214.18</td>
+                    <td>0.00</td>
+                    <td>9m</td>
+                    <td>50%</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Priced in line with macro shock expectations (MDI = -0.17 sigma). No statistical arbitrage edge.</td>
+                </tr>
+            
+                </tbody>
+            </table>
+        
+    </div>
+
+    <!-- Execution Tickets -->
+    <div class="section">
+        <div class="section-title">Prop Desk Algorithmic Execution Blotter</div>
+        <p style="font-size: 13px; color: #94a3b8; margin-top: 0;">
+            Position sizing sized to risk budget ($10M book with 15 bps max loss limit per ticket).
+        </p>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>Strategy</th>
+                        <th>Order</th>
+                        <th>Entry</th>
+                        <th>Target</th>
+                        <th>Stop</th>
+                        <th>Hedge</th>
+                        <th>Notional ($)</th>
+                        <th>Target PnL</th>
+                        <th>Max Risk</th>
+                        <th>Execution Instructions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <tr>
+                    <td><b>QNX-TKT-001</b></td>
+                    <td>Macro Dislocation Convergence</td>
+                    <td><span class="badge-sell">SELL</span> <b>IEF</b></td>
+                    <td>$93.88</td>
+                    <td>$93.29</td>
+                    <td>$94.44</td>
+                    <td>BUY SHY (2.5x)</td>
+                    <td><b>$2,000,000</b></td>
+                    <td style="color: #34d399;">+$12,568</td>
+                    <td style="color: #fb7185;">-$12,001</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Enter SELL IEF limit @ 93.88. Bracket: Take Profit @ 93.29, Stop Loss @ 94.44. Time Horizon: ~30 mins.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>QNX-TKT-002</b></td>
+                    <td>Macro Dislocation Convergence</td>
+                    <td><span class="badge-sell">SELL</span> <b>FXY</b></td>
+                    <td>$61.82</td>
+                    <td>$61.37</td>
+                    <td>$62.19</td>
+                    <td>None</td>
+                    <td><b>$2,000,000</b></td>
+                    <td style="color: #34d399;">+$14,635</td>
+                    <td style="color: #fb7185;">-$11,999</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Enter SELL FXY limit @ 61.82. Bracket: Take Profit @ 61.37, Stop Loss @ 62.19. Time Horizon: ~18 mins.</td>
+                </tr>
+            
+                <tr>
+                    <td><b>QNX-TKT-003</b></td>
+                    <td>Curve Twist: Steepener Fade (Bet on Slope Re-flattening)</td>
+                    <td><span class="badge-sell">SELL</span> <b>IEF</b></td>
+                    <td>$-1.05</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>BUY SHY (4.1x)</td>
+                    <td><b>$2,000,000</b></td>
+                    <td style="color: #34d399;">+$25,000</td>
+                    <td style="color: #fb7185;">-$12,000</td>
+                    <td style="font-size: 11px; color: #94a3b8;">Enter 2s10s flattener: SELL 10Y Note (IEF) vs BUY 2Y Note (SHY) duration matched.</td>
+                </tr>
+            
+                </tbody>
+            </table>
+        
+    </div>
+
+    <!-- Econometric Event Study -->
+    <div class="section">
+        <div class="section-title">Econometric Event Study Metrics (Campbell-Lo-MacKinlay Framework)</div>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Name</th>
+                        <th>T0 Price</th>
+                        <th>Final Price</th>
+                        <th>Post Return</th>
+                        <th>CAR</th>
+                        <th>MFE</th>
+                        <th>MAE</th>
+                        <th>Vol Expansion</th>
+                        <th>t-stat</th>
+                        <th>p-val</th>
+                        <th>Significant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <tr>
+                    <td><b>FXY</b></td>
+                    <td>Japanese Yen (USD/JPY Inverted)</td>
+                    <td>$61.63</td>
+                    <td>$61.82</td>
+                    <td style="color: #34d399; font-weight: 600;">+0.31%</td>
+                    <td>+2.68%</td>
+                    <td style="color: #34d399;">+0.31%</td>
+                    <td style="color: #fb7185;">-0.11%</td>
+                    <td>0.57x</td>
+                    <td>+3.63</td>
+                    <td>0.0003</td>
+                    <td><span class="badge-buy">YES</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>IWM</b></td>
+                    <td>Russell 2000 (IWM)</td>
+                    <td>$204.65</td>
+                    <td>$205.24</td>
+                    <td style="color: #34d399; font-weight: 600;">+0.29%</td>
+                    <td>+0.98%</td>
+                    <td style="color: #34d399;">+0.30%</td>
+                    <td style="color: #fb7185;">-0.40%</td>
+                    <td>0.95x</td>
+                    <td>+1.04</td>
+                    <td>0.2986</td>
+                    <td><span class="badge-neutral">No</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>UUP</b></td>
+                    <td>US Dollar Index (DXY Bullish)</td>
+                    <td>$28.29</td>
+                    <td>$28.35</td>
+                    <td style="color: #34d399; font-weight: 600;">+0.24%</td>
+                    <td>-0.98%</td>
+                    <td style="color: #34d399;">+0.37%</td>
+                    <td style="color: #fb7185;">-0.01%</td>
+                    <td>0.51x</td>
+                    <td>-1.80</td>
+                    <td>0.0725</td>
+                    <td><span class="badge-neutral">No</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>SHY</b></td>
+                    <td>US Treasury 1-3Y (2Y Proxy)</td>
+                    <td>$81.33</td>
+                    <td>$81.45</td>
+                    <td style="color: #34d399; font-weight: 600;">+0.15%</td>
+                    <td>+1.01%</td>
+                    <td style="color: #34d399;">+0.17%</td>
+                    <td style="color: #fb7185;">-0.11%</td>
+                    <td>0.42x</td>
+                    <td>+2.73</td>
+                    <td>0.0064</td>
+                    <td><span class="badge-buy">YES</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>HYG</b></td>
+                    <td>High Yield Corporate Bond (HYG)</td>
+                    <td>$76.81</td>
+                    <td>$76.90</td>
+                    <td style="color: #34d399; font-weight: 600;">+0.12%</td>
+                    <td>+1.13%</td>
+                    <td style="color: #34d399;">+0.24%</td>
+                    <td style="color: #fb7185;">-0.20%</td>
+                    <td>0.73x</td>
+                    <td>+2.24</td>
+                    <td>0.0249</td>
+                    <td><span class="badge-buy">YES</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>IEF</b></td>
+                    <td>US Treasury 7-10Y (10Y Proxy)</td>
+                    <td>$93.80</td>
+                    <td>$93.88</td>
+                    <td style="color: #34d399; font-weight: 600;">+0.08%</td>
+                    <td>+0.93%</td>
+                    <td style="color: #34d399;">+0.17%</td>
+                    <td style="color: #fb7185;">-0.37%</td>
+                    <td>0.50x</td>
+                    <td>+1.35</td>
+                    <td>0.1765</td>
+                    <td><span class="badge-neutral">No</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>SPY</b></td>
+                    <td>S&P 500 Index (SPY)</td>
+                    <td>$502.80</td>
+                    <td>$502.97</td>
+                    <td style="color: #34d399; font-weight: 600;">+0.03%</td>
+                    <td>+1.78%</td>
+                    <td style="color: #34d399;">+0.15%</td>
+                    <td style="color: #fb7185;">-0.52%</td>
+                    <td>0.83x</td>
+                    <td>+2.55</td>
+                    <td>0.0106</td>
+                    <td><span class="badge-buy">YES</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>IEI</b></td>
+                    <td>US Treasury 3-7Y (5Y Proxy)</td>
+                    <td>$114.45</td>
+                    <td>$114.44</td>
+                    <td style="color: #34d399; font-weight: 600;">-0.00%</td>
+                    <td>+1.92%</td>
+                    <td style="color: #34d399;">+0.24%</td>
+                    <td style="color: #fb7185;">-0.29%</td>
+                    <td>0.42x</td>
+                    <td>+2.91</td>
+                    <td>0.0036</td>
+                    <td><span class="badge-buy">YES</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>QQQ</b></td>
+                    <td>Nasdaq 100 (QQQ)</td>
+                    <td>$433.64</td>
+                    <td>$433.27</td>
+                    <td style="color: #fb7185; font-weight: 600;">-0.08%</td>
+                    <td>+1.17%</td>
+                    <td style="color: #34d399;">+0.11%</td>
+                    <td style="color: #fb7185;">-0.82%</td>
+                    <td>0.62x</td>
+                    <td>+0.96</td>
+                    <td>0.3371</td>
+                    <td><span class="badge-neutral">No</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>USO</b></td>
+                    <td>WTI Crude Oil (USO)</td>
+                    <td>$75.48</td>
+                    <td>$75.30</td>
+                    <td style="color: #fb7185; font-weight: 600;">-0.23%</td>
+                    <td>-2.77%</td>
+                    <td style="color: #34d399;">+0.29%</td>
+                    <td style="color: #fb7185;">-1.22%</td>
+                    <td>0.79x</td>
+                    <td>-2.02</td>
+                    <td>0.0436</td>
+                    <td><span class="badge-buy">YES</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>GLD</b></td>
+                    <td>Gold Bullion (GLD)</td>
+                    <td>$214.95</td>
+                    <td>$214.18</td>
+                    <td style="color: #fb7185; font-weight: 600;">-0.36%</td>
+                    <td>-0.26%</td>
+                    <td style="color: #34d399;">+0.02%</td>
+                    <td style="color: #fb7185;">-0.48%</td>
+                    <td>0.92x</td>
+                    <td>-0.47</td>
+                    <td>0.6388</td>
+                    <td><span class="badge-neutral">No</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>FXE</b></td>
+                    <td>Euro FX (EUR/USD)</td>
+                    <td>$100.62</td>
+                    <td>$100.17</td>
+                    <td style="color: #fb7185; font-weight: 600;">-0.44%</td>
+                    <td>-0.90%</td>
+                    <td style="color: #34d399;">+0.08%</td>
+                    <td style="color: #fb7185;">-0.53%</td>
+                    <td>0.57x</td>
+                    <td>-1.80</td>
+                    <td>0.0725</td>
+                    <td><span class="badge-neutral">No</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>TLT</b></td>
+                    <td>US Treasury 20Y+ (20Y/30Y Proxy)</td>
+                    <td>$90.63</td>
+                    <td>$90.15</td>
+                    <td style="color: #fb7185; font-weight: 600;">-0.53%</td>
+                    <td>+1.12%</td>
+                    <td style="color: #34d399;">+0.00%</td>
+                    <td style="color: #fb7185;">-1.22%</td>
+                    <td>0.48x</td>
+                    <td>+0.88</td>
+                    <td>0.3800</td>
+                    <td><span class="badge-neutral">No</span></td>
+                </tr>
+            
+                </tbody>
+            </table>
+        
+    </div>
+
+    <!-- Lead-Lag & Absorption Speeds -->
+    <div class="section">
+        <div class="section-title">Transmission Cascade & Information Absorption Speed</div>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Name</th>
+                        <th>T50 Absorption (50% of move)</th>
+                        <th>T80 Absorption (80% of move)</th>
+                        <th>Speed Classification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <tr>
+                    <td><b>SPY</b></td>
+                    <td>S&P 500 Index (SPY)</td>
+                    <td>6 mins</td>
+                    <td><b>39 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>QQQ</b></td>
+                    <td>Nasdaq 100 (QQQ)</td>
+                    <td>18 mins</td>
+                    <td><b>40 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>IWM</b></td>
+                    <td>Russell 2000 (IWM)</td>
+                    <td>11 mins</td>
+                    <td><b>15 mins</b></td>
+                    <td><span class="badge-buy">Moderate (11-25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>SHY</b></td>
+                    <td>US Treasury 1-3Y (2Y Proxy)</td>
+                    <td>7 mins</td>
+                    <td><b>112 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>IEI</b></td>
+                    <td>US Treasury 3-7Y (5Y Proxy)</td>
+                    <td>7 mins</td>
+                    <td><b>9 mins</b></td>
+                    <td><span class="badge-buy">Fast (4-10m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>IEF</b></td>
+                    <td>US Treasury 7-10Y (10Y Proxy)</td>
+                    <td>6 mins</td>
+                    <td><b>43 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>TLT</b></td>
+                    <td>US Treasury 20Y+ (20Y/30Y Proxy)</td>
+                    <td>32 mins</td>
+                    <td><b>44 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>UUP</b></td>
+                    <td>US Dollar Index (DXY Bullish)</td>
+                    <td>36 mins</td>
+                    <td><b>86 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>FXE</b></td>
+                    <td>Euro FX (EUR/USD)</td>
+                    <td>45 mins</td>
+                    <td><b>68 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>FXY</b></td>
+                    <td>Japanese Yen (USD/JPY Inverted)</td>
+                    <td>70 mins</td>
+                    <td><b>78 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>GLD</b></td>
+                    <td>Gold Bullion (GLD)</td>
+                    <td>51 mins</td>
+                    <td><b>78 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>USO</b></td>
+                    <td>WTI Crude Oil (USO)</td>
+                    <td>46 mins</td>
+                    <td><b>66 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                <tr>
+                    <td><b>HYG</b></td>
+                    <td>High Yield Corporate Bond (HYG)</td>
+                    <td>22 mins</td>
+                    <td><b>40 mins</b></td>
+                    <td><span class="badge-buy">Lagging (>25m)</span></td>
+                </tr>
+            
+                </tbody>
+            </table>
+        
+    </div>
+
+    <div class="footer">
+        QuantNexus-Macro Quantitative Systems &copy; 2026. For Institutional Quantitative Research & Proprietary Trading Use.
+    </div>
+
+</body>
+</html>
