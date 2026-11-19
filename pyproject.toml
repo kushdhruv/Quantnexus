@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantnexus-macro"
+version = "1.0.0"
+description = "Institutional Cross-Asset Macroeconomic Transmission & Dislocation Alpha Platform"
+authors = [
+    {name = "QuantNexus Quantitative Systems", email = "research@quantnexus.io"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scipy>=1.10.0",
+    "statsmodels>=0.14.0",
+    "plotly>=5.15.0",
+    "yfinance>=0.2.28",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+quantnexus = "quantnexus_macro.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["quantnexus_macro*"]
+exclude = ["tests*", "reports*", "examples*", "docs*"]
